@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+.conda/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Linting
+.ruff_cache/
+.mypy_cache/
+
+# Sphinx documentation build output
+docs/_build/
+
+# LaTeX build artifacts (paper/)
+paper
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/*.toc
+paper/*.nav
+paper/*.snm
+paper/*.vrb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Personal notes
+CHEATSHEET.md
+physics_equations_summary.txt
+sbom.json
+sbom.xml
+testing.ipynb
+not-useful/
+not-useful/*.py
+CLAUDE.md
+experiment-cmo-sac/*
+experiment-cmo_sac/COMPARISON_GUIDE.md
+experiment-cmo_sac/ENVIRONMENT_COMPATIBILITY_FIXES.md
+experiment-cmo_sac/QUICK_FIX_SUMMARY.md
+experiment-cmo_sac/TRAINING_FIXES.md
+experiment-pi-hac/*
+paper/*
+gpu-modeling.pdf
+experiment-cmo_sac/results/*
+experiment-cmo_sac/*.png
+evaluation_figures/*
+evaluation_figures_calibrated/*
+evaluation_results/*
+code-for-figures/
+code-for-figures/*
+benchmark_plotting
+neurips-benchmarklcompopt
+neurips-benchmarklcompopt/*
+experiment-pi_hac
+experiment-pi_hac/*
+experiment-cmo-sac/results
+neurips-benchmarklcompopt

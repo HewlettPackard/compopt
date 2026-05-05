@@ -1,0 +1,106 @@
+CompOpt — AI-Enabled Data Center Simulation Benchmark
+=====================================================
+Reference Document for LLM/RAG Grounding
+Version 0.1.0
+
+System Description
+------------------
+CompOpt simulates an end-to-end liquid-cooled GPU data center including:
+  - GPU chip-level thermal RC-network (die tiles + HBM + VRM + PCB)
+  - Server-level node model (GPUs + CPU + memory + NIC + NVMe)
+  - Rack-level coolant manifold (multiple servers, shared coolant)
+  - CDU (Coolant Distribution Unit) — rack-to-facility heat exchanger
+  - Cooling tower / dry cooler — facility-to-ambient heat rejection
+  - Job scheduler — RAPS-compatible resource allocation
+
+The simulator supports H100 and B200 GPU presets with validated thermal
+parameters.
+
+Gymnasium Environments (5 difficulty levels)
+--------------------------------------------
+1. ChipThermal-v0   : Single GPU chip thermal control (Easy)
+2. RackCooling-v0   : Rack-level cooling control (Medium)
+3. Scheduling-v0    : Job scheduling only (Medium)
+4. DataCenter-v0    : Full data-center cooling (Hard)
+5. JointDC-v0       : Joint scheduling + cooling (Expert)
+
+Cooling Actions
+---------------
+Rack coolant flow:
+  m_dot_kg_s = 0.5 + action_norm * 3.5   (range: 0.5–4.0 kg/s)
+  Minimum flow saves pumping energy; maximum provides peak cooling.
+
+CDU pump flow:
+  m_dot_cdu = 1.0 + action_norm * 7.0    (range: 1.0–8.0 kg/s)
+
+Cooling tower fan:
+  fan_power_W = 5000 + action_norm * 25000  (range: 5–30 kW)
+
+Thermal Limits (H100-class GPUs)
+---------------------------------
+GPU die hotspot   : keep below 80°C steady state; absolute max ~83°C
+HBM temperature   : keep below 95°C
+VRM temperature   : keep below 105°C
+Coolant inlet     : typical warm-water at 35–45°C
+
+Thermal Limits (B200-class GPUs)
+---------------------------------
+GPU die hotspot   : keep below 85°C steady state
+HBM temperature   : keep below 100°C
+VRM temperature   : keep below 110°C
+
+Control Heuristics
+------------------
+- If hotspot > 82°C: increase flow (action_norm → 1.0)
+- If hotspot 78–82°C: hold current flow
+- If hotspot < 75°C: reduce flow (action_norm → 0.2)
+- At idle power (<200W/GPU): action_norm ≈ 0.1
+- At full load (>700W/GPU): action_norm ≥ 0.6
+
+Data Center Efficiency Metrics
+-------------------------------
+PUE (Power Usage Effectiveness):
+  PUE = Total_Power / IT_Power
+  Target: PUE < 1.2 (excellent), PUE < 1.4 (good)
+
+WUE (Water Usage Effectiveness):
+  WUE = Water_Used_L / IT_Energy_kWh
+  Target: WUE < 1.0 L/kWh (excellent for liquid-cooled)
+
+Cost:
+  energy_cost = power_kWh * $/kWh (typical: $0.094/kWh)
+  water_cost  = litres * $/L      (typical: $0.004/L)
+
+Reward Function (RL)
+--------------------
+Cooling-only reward:
+  r = -(max(0, T_hotspot - 80)² + 0.01 * (m_dot - 0.5)²)
+
+Data-center reward (multi-objective):
+  r = -(thermal_penalty + energy_penalty + water_penalty + cost_penalty)
+
+Joint reward (scheduling + cooling):
+  r = throughput_reward + utilisation_reward - thermal_penalty
+      - energy_penalty - water_penalty - cost_penalty - SLA_violation
+
+Scheduling (RAPS-compatible)
+-----------------------------
+Supported policies: FCFS, SJF, Priority, Backfill, ThermalAware
+Each job has: nodes_required, gpus_per_node, wall_time, cpu_trace, gpu_trace
+Jobs are characterised by type: training, inference, fine_tuning, data_pipeline
+
+Workload Patterns
+-----------------
+- Sinusoidal: GPU power oscillates between 150W and 650W, 5-min period
+- Step: alternating 100W idle / 650W full-load every 2 min
+- Burst: 30-second spike to 700W, then 150W baseline
+- Stochastic: Poisson arrivals with exponential durations
+- Trace-driven: replay real GPU power measurements
+- Mixed: weighted combination of multiple profiles
+
+Vectorised Simulation
+---------------------
+CompOpt supports batched (vectorised) parallel environments via
+BatchSimulator for high-throughput RL data collection without
+multiprocessing overhead. Typical throughput: >10,000 steps/sec
+for rack-level environments.

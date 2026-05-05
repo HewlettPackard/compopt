@@ -1,0 +1,40 @@
+{
+    "_description": "Coolant Distribution Unit (CDU) configurations",
+    "_units": {
+        "UA_W_K": "W/K - Overall heat transfer coefficient × area",
+        "T_facility_C": "°C - Facility-side supply temperature",
+        "pump_power_W_per_kgs": "W/(kg/s) - Pump power per unit flow rate"
+    },
+    "_sizing_notes": {
+        "UA_sizing": "UA determines heat exchange effectiveness. Q_hx = UA × (T_hot - T_cold). For stable operation: UA should be sized so that Q_hx ≈ expected heat load when ΔT is reasonable (5-15°C). Formula: UA = Q_design / ΔT_design. For 20kW load with 10°C ΔT: UA = 2000 W/K.",
+        "stability": "If UA is too high relative to loop thermal masses, temperatures oscillate. Rule: UA × dt / C_loop < 0.5 for stability. With C_loop = V × ρ × c_p.",
+        "thermal_mass_ratio": "CDU loop volumes should be larger than chip-level loops (10-100x) to provide thermal buffering and prevent instabilities from propagating."
+    },
+    
+    "small_datacenter": {
+        "_description": "CDU for small datacenter (2-4 racks, <50kW IT load)",
+        "UA_W_K": 5000.0,
+        "T_facility_C": 30.0,
+        "pump_power_W_per_kgs": 500.0,
+        "hot_loop_V_m3": 0.05,
+        "cold_loop_V_m3": 0.10
+    },
+    
+    "medium_datacenter": {
+        "_description": "CDU for medium datacenter (8-16 racks, 100-500kW IT load)",
+        "UA_W_K": 20000.0,
+        "T_facility_C": 28.0,
+        "pump_power_W_per_kgs": 400.0,
+        "hot_loop_V_m3": 0.20,
+        "cold_loop_V_m3": 0.40
+    },
+    
+    "large_datacenter": {
+        "_description": "CDU for large datacenter (32+ racks, >1MW IT load)",
+        "UA_W_K": 100000.0,
+        "T_facility_C": 25.0,
+        "pump_power_W_per_kgs": 350.0,
+        "hot_loop_V_m3": 1.0,
+        "cold_loop_V_m3": 2.0
+    }
+}

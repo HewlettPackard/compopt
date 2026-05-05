@@ -1,0 +1,69 @@
+{
+    "name": "frontier_like",
+    "description": "Frontier-like HPC system — adapted from RAPS config",
+    "system": {
+        "NUM_CDUS": 1,
+        "RACKS_PER_CDU": 2,
+        "RECTIFIERS_PER_RACK": 1,
+        "CHASSIS_PER_RACK": 3,
+        "SWITCHES_PER_CHASSIS": 2,
+        "RECTIFIERS_PER_CHASSIS": 2,
+        "NODES_PER_RACK": 12,
+        "NODES_PER_BLADE": 2,
+        "NODES_PER_RECTIFIER": 2,
+        "CPUS_PER_NODE": 1,
+        "GPUS_PER_NODE": 4,
+        "NICS_PER_NODE": 1,
+        "MISSING_RACKS": [],
+        "DOWN_NODES": [],
+        "GPU_PRESET": "H100_SXM",
+        "CPU_PEAK_FLOPS": 2.048e12,
+        "GPU_PEAK_FLOPS": 5.2e13
+    },
+    "power": {
+        "POWER_GPU_IDLE": 88,
+        "POWER_GPU_MAX": 700,
+        "POWER_CPU_IDLE": 90,
+        "POWER_CPU_MAX": 280,
+        "POWER_MEM": 74.26,
+        "POWER_NIC": 20,
+        "POWER_NVME": 30,
+        "POWER_SWITCH": 250,
+        "POWER_CDU": 8473.47,
+        "POWER_UPDATE_FREQ": 15,
+        "RECTIFIER_PEAK_THRESHOLD": 13670,
+        "SIVOC_LOSS_CONSTANT": 13,
+        "SIVOC_EFFICIENCY": 0.98,
+        "RECTIFIER_LOSS_CONSTANT": 17,
+        "RECTIFIER_EFFICIENCY": 0.96,
+        "POWER_COST": 0.094
+    },
+    "scheduler": {
+        "SEED": 42,
+        "JOB_ARRIVAL_TIME": 900,
+        "MTBF": 11,
+        "MAX_TIME": 88200,
+        "TRACE_QUANTA": 15,
+        "MIN_WALL_TIME": 3600,
+        "MAX_WALL_TIME": 43200,
+        "UI_UPDATE_FREQ": 900,
+        "MAX_NODES_PER_JOB": 24,
+        "JOB_END_PROBS": {
+            "COMPLETED": 0.63,
+            "FAILED": 0.13,
+            "CANCELLED": 0.12,
+            "TIMEOUT": 0.11,
+            "NODE_FAIL": 0.01
+        }
+    },
+    "cooling": {
+        "CDU_UA_W_K": 50000,
+        "T_FACILITY_C": 30.0,
+        "PUMP_POWER_W_PER_KGS": 500,
+        "TOWER_FAN_UA_W_K": 30000,
+        "TOWER_FAN_POWER_W": 15000,
+        "TOWER_BASIN_C_J_K": 500000,
+        "EVAP_FRACTION": 0.75,
+        "WATER_COST_DOLLAR_PER_L": 0.004
+    }
+}

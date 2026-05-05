@@ -1,0 +1,35 @@
+{
+    "name": "small_ai_cluster",
+    "description": "Small AI training cluster — 2 racks, 8 nodes, 16 GPUs",
+    "system": {
+        "NUM_CDUS": 1,
+        "RACKS_PER_CDU": 2,
+        "NODES_PER_RACK": 4,
+        "CPUS_PER_NODE": 1,
+        "GPUS_PER_NODE": 2,
+        "NICS_PER_NODE": 1,
+        "GPU_PRESET": "H100_SXM"
+    },
+    "power": {
+        "POWER_GPU_IDLE": 88,
+        "POWER_GPU_MAX": 700,
+        "POWER_CPU_IDLE": 90,
+        "POWER_CPU_MAX": 280,
+        "POWER_MEM": 74,
+        "POWER_NIC": 20,
+        "POWER_NVME": 30,
+        "POWER_SWITCH": 250,
+        "POWER_COST": 0.094
+    },
+    "scheduler": {
+        "SEED": 42,
+        "MAX_NODES_PER_JOB": 8,
+        "JOB_ARRIVAL_TIME": 300,
+        "MAX_TIME": 43200
+    },
+    "cooling": {
+        "CDU_UA_W_K": 30000,
+        "T_FACILITY_C": 28.0,
+        "TOWER_FAN_POWER_W": 10000
+    }
+}

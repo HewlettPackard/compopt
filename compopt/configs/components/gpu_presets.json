@@ -1,0 +1,81 @@
+{
+    "_description": "GPU thermal model presets for different GPU architectures",
+    "_units": {
+        "tdp_W": "Watts - Thermal Design Power",
+        "die_area_mm2": "mm² - Die area",
+        "C_*_J_K": "J/K - Thermal capacitance",
+        "R_*_K_W": "K/W - Thermal resistance",
+        "T_max_*_C": "°C - Maximum safe temperature"
+    },
+    "_sizing_notes": {
+        "thermal_resistance": "R_tile_to_coolant should be sized so that at TDP with max coolant flow, T_die reaches ~65-70°C above T_coolant_in. Formula: R_tile = (T_target - T_coolant) * n_tiles / P_total. For H100 at 700W targeting 70°C with 40°C coolant: R = (70-40)*16/700 ≈ 0.7 K/W per tile.",
+        "thermal_capacitance": "C values determine thermal time constants. Larger C = slower response. τ = R*C. For responsive control, aim for τ ~ 1-10 seconds per node.",
+        "flow_rate_authority": "The min/max flow rate range should create a meaningful temperature difference. At min flow, T_die should approach T_max. At max flow, T_die should be well below T_target."
+    },
+    
+    "H100_SXM": {
+        "tdp_W": 700,
+        "die_area_mm2": 814,
+        "nx_tiles": 4,
+        "ny_tiles": 4,
+        "C_tile_J_K": 8.0,
+        "C_hbm_J_K": 80.0,
+        "C_vrm_J_K": 40.0,
+        "C_pcb_J_K": 200.0,
+        "R_lateral_tile_K_W": 0.5,
+        "R_tile_to_pcb_K_W": 0.3,
+        "R_tile_to_coolant_K_W": 0.8,
+        "R_hbm_to_pcb_K_W": 0.4,
+        "R_vrm_to_pcb_K_W": 0.4,
+        "R_hbm_to_coolant_K_W": 1.2,
+        "R_vrm_to_coolant_K_W": 1.5,
+        "R_pcb_to_coolant_K_W": 2.0,
+        "T_max_die_C": 83.0,
+        "T_max_hbm_C": 95.0,
+        "T_max_vrm_C": 105.0
+    },
+    
+    "B200": {
+        "tdp_W": 1000,
+        "die_area_mm2": 1000,
+        "nx_tiles": 6,
+        "ny_tiles": 6,
+        "C_tile_J_K": 6.0,
+        "C_hbm_J_K": 120.0,
+        "C_vrm_J_K": 60.0,
+        "C_pcb_J_K": 300.0,
+        "R_lateral_tile_K_W": 0.4,
+        "R_tile_to_pcb_K_W": 0.25,
+        "R_tile_to_coolant_K_W": 0.5,
+        "R_hbm_to_pcb_K_W": 0.35,
+        "R_vrm_to_pcb_K_W": 0.35,
+        "R_hbm_to_coolant_K_W": 1.0,
+        "R_vrm_to_coolant_K_W": 1.2,
+        "R_pcb_to_coolant_K_W": 1.5,
+        "T_max_die_C": 85.0,
+        "T_max_hbm_C": 100.0,
+        "T_max_vrm_C": 110.0
+    },
+    
+    "A100_SXM": {
+        "tdp_W": 400,
+        "die_area_mm2": 826,
+        "nx_tiles": 4,
+        "ny_tiles": 4,
+        "C_tile_J_K": 8.0,
+        "C_hbm_J_K": 60.0,
+        "C_vrm_J_K": 35.0,
+        "C_pcb_J_K": 180.0,
+        "R_lateral_tile_K_W": 0.6,
+        "R_tile_to_pcb_K_W": 0.35,
+        "R_tile_to_coolant_K_W": 1.2,
+        "R_hbm_to_pcb_K_W": 0.5,
+        "R_vrm_to_pcb_K_W": 0.5,
+        "R_hbm_to_coolant_K_W": 1.5,
+        "R_vrm_to_coolant_K_W": 1.8,
+        "R_pcb_to_coolant_K_W": 2.5,
+        "T_max_die_C": 83.0,
+        "T_max_hbm_C": 95.0,
+        "T_max_vrm_C": 105.0
+    }
+}

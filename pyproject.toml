@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "compopt"
+version = "0.1.0"
+description = "CompOpt — AI-Enabled Data Center Simulation Benchmark for RL and Agentic AI"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "CompOpt Contributors"},
+    {name = "Oak Ridge National Laboratory"},
+]
+keywords = [
+    "compute-optimization", "reinforcement-learning", "data-center",
+    "thermal-simulation", "liquid-cooling", "gpu", "benchmark",
+    "gymnasium", "scheduling", "energy-efficiency", "water-efficiency",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "gymnasium>=0.29",
+    "ipykernel>=6.31.0",
+]
+
+[project.optional-dependencies]
+plotting = ["matplotlib>=3.7"]
+rl = [
+    "stable-baselines3>=2.1",
+    "sb3-contrib>=2.1",
+]
+rllib = ["ray[rllib]>=2.9"]
+llm = [
+    "langchain>=0.2",
+    "langchain-community>=0.2",
+    "sentence-transformers>=2.2",
+    "faiss-cpu>=1.7",
+    "openai>=1.0",
+]
+all = ["compopt[plotting,rl,llm]"]
+docs = [
+    "sphinx>=7.0",
+    "furo>=2024.1",
+    "sphinx-autobuild>=2024.1",
+    "sphinx-copybutton>=0.5",
+    "sphinx-autodoc-typehints>=2.0",
+    "sphinx-design>=0.6",
+    "myst-parser>=3.0",
+]
+dev = [
+    "compopt[all,docs]",
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["compopt*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+]

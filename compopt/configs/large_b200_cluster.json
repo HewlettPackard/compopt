@@ -1,0 +1,36 @@
+{
+    "name": "large_b200_cluster",
+    "description": "Next-gen large B200 GPU cluster — 8 racks, 64 nodes, 256 GPUs",
+    "system": {
+        "NUM_CDUS": 4,
+        "RACKS_PER_CDU": 2,
+        "NODES_PER_RACK": 8,
+        "CPUS_PER_NODE": 2,
+        "GPUS_PER_NODE": 4,
+        "NICS_PER_NODE": 2,
+        "GPU_PRESET": "B200"
+    },
+    "power": {
+        "POWER_GPU_IDLE": 120,
+        "POWER_GPU_MAX": 1000,
+        "POWER_CPU_IDLE": 100,
+        "POWER_CPU_MAX": 350,
+        "POWER_MEM": 90,
+        "POWER_NIC": 25,
+        "POWER_NVME": 35,
+        "POWER_SWITCH": 300,
+        "POWER_COST": 0.12
+    },
+    "scheduler": {
+        "SEED": 42,
+        "MAX_NODES_PER_JOB": 64,
+        "JOB_ARRIVAL_TIME": 600,
+        "MAX_TIME": 86400
+    },
+    "cooling": {
+        "CDU_UA_W_K": 80000,
+        "T_FACILITY_C": 25.0,
+        "TOWER_FAN_POWER_W": 25000,
+        "WATER_COST_DOLLAR_PER_L": 0.005
+    }
+}

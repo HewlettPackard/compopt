@@ -1,0 +1,50 @@
+{
+    "_description": "Simulation parameters for numerical stability and accuracy",
+    "_units": {
+        "dt": "seconds - Simulation timestep",
+        "episode_length_s": "seconds - Episode duration",
+        "workload_period_s": "seconds - Workload oscillation period"
+    },
+    "_sizing_notes": {
+        "timestep_selection": "dt must be small enough for numerical stability but large enough for efficient simulation. Rule of thumb: dt < τ_min / 5, where τ_min is the smallest thermal time constant in the system.",
+        "chip_level": "Chip thermal nodes have small capacitance (C ~ 8-200 J/K) and moderate resistance (R ~ 0.5-2 K/W), giving τ ~ 4-400s. Safe dt: 0.5-2.0s.",
+        "rack_level": "Rack loops have larger thermal mass. Safe dt: 1.0-5.0s.",
+        "datacenter_level": "CDU and cooling tower have large thermal masses. Safe dt: 5.0-30.0s.",
+        "rk4_substeps": "CompOpt uses RK4 integration with automatic sub-stepping. The code computes max_stable_dt and subdivides if needed."
+    },
+    
+    "chip_thermal": {
+        "dt": 0.5,
+        "episode_length_s": 300.0,
+        "workload_period_s": 60.0,
+        "max_stable_dt_estimate": 2.0
+    },
+    
+    "rack_cooling": {
+        "dt": 1.0,
+        "episode_length_s": 600.0,
+        "workload_period_s": 120.0,
+        "max_stable_dt_estimate": 5.0
+    },
+    
+    "datacenter": {
+        "dt": 5.0,
+        "episode_length_s": 1800.0,
+        "workload_period_s": 300.0,
+        "max_stable_dt_estimate": 30.0
+    },
+    
+    "fast_training": {
+        "_description": "Aggressive timesteps for faster RL training (may reduce accuracy)",
+        "chip_dt": 1.0,
+        "rack_dt": 2.0,
+        "datacenter_dt": 10.0
+    },
+    
+    "high_fidelity": {
+        "_description": "Conservative timesteps for high accuracy (slower simulation)",
+        "chip_dt": 0.1,
+        "rack_dt": 0.5,
+        "datacenter_dt": 2.0
+    }
+}

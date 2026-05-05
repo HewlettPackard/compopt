@@ -1,0 +1,58 @@
+{
+    "_description": "Coolant loop configurations for chip-level and rack-level cooling",
+    "_units": {
+        "T_in_C": "°C - Coolant inlet temperature",
+        "m_dot_kg_s": "kg/s - Mass flow rate",
+        "m_dot_min_kg_s": "kg/s - Minimum controllable flow rate",
+        "m_dot_max_kg_s": "kg/s - Maximum controllable flow rate",
+        "c_p_J_kgK": "J/(kg·K) - Specific heat capacity",
+        "V_m3": "m³ - Control volume",
+        "rho_kg_m3": "kg/m³ - Coolant density"
+    },
+    "_sizing_notes": {
+        "specific_heat": "c_p affects how much temperature changes with heat input. Water: 4186 J/(kg·K). For faster thermal response and larger control authority, use lower c_p (600-1200). This simulates a less effective coolant or smaller effective heat exchange.",
+        "flow_rate_range": "The ratio m_dot_max/m_dot_min determines control authority. A ratio of 10:1 (e.g., 0.05-0.5) gives good dynamic range. At min flow: T_die should approach T_max_die. At max flow: T_die should be well below target.",
+        "control_volume": "V_m3 determines thermal inertia. Smaller V = faster response but may cause numerical instability. Larger V = more stable but sluggish. Time constant τ = (V * ρ * c_p) / (m_dot * c_p) = V * ρ / m_dot.",
+        "stability_criterion": "For numerical stability with dt=1.0s: ensure τ > 2*dt, i.e., V * ρ / m_dot_max > 2.0s"
+    },
+    
+    "chip_cooling": {
+        "_description": "Direct-to-chip liquid cooling loop",
+        "T_in_C": 40.0,
+        "m_dot_default_kg_s": 0.25,
+        "m_dot_min_kg_s": 0.05,
+        "m_dot_max_kg_s": 0.5,
+        "c_p_J_kgK": 800.0,
+        "V_m3": 1.5e-4,
+        "rho_kg_m3": 1000.0
+    },
+    
+    "rack_cooling": {
+        "_description": "Rack-level coolant distribution loop",
+        "T_in_C": 35.0,
+        "m_dot_default_kg_s": 2.0,
+        "m_dot_min_kg_s": 0.5,
+        "m_dot_max_kg_s": 5.0,
+        "c_p_J_kgK": 4000.0,
+        "V_m3": 0.01,
+        "rho_kg_m3": 1000.0
+    },
+    
+    "cdu_hot_loop": {
+        "_description": "CDU hot side (rack-facing) loop",
+        "T_in_C": 40.0,
+        "m_dot_kg_s": 2.0,
+        "c_p_J_kgK": 4000.0,
+        "V_m3": 0.05,
+        "rho_kg_m3": 1000.0
+    },
+    
+    "cdu_cold_loop": {
+        "_description": "CDU cold side (facility-facing) loop",
+        "T_in_C": 30.0,
+        "m_dot_kg_s": 4.0,
+        "c_p_J_kgK": 4000.0,
+        "V_m3": 0.10,
+        "rho_kg_m3": 1000.0
+    }
+}

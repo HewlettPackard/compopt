@@ -1,0 +1,45 @@
+{
+    "_description": "Workload profile configurations",
+    "_units": {
+        "base_W": "Watts - Baseline/idle power",
+        "peak_W": "Watts - Peak/full-load power",
+        "period_s": "seconds - Oscillation period",
+        "duration_s": "seconds - Burst duration"
+    },
+    "_sizing_notes": {
+        "power_range": "The base-to-peak power ratio affects thermal dynamics. Larger swings = more challenging control. Typical GPU: 20-100% of TDP.",
+        "period_vs_tau": "For visible thermal oscillations, workload period should be comparable to thermal time constant. If period >> τ, system reaches quasi-steady-state. If period << τ, temperature barely changes.",
+        "control_authority": "Ensure cooling system can handle peak power. At peak power with max cooling, T_die should stay below T_max."
+    },
+    
+    "sinusoidal": {
+        "_description": "Smooth sinusoidal workload for training/inference cycles",
+        "base_gpu_W": 150.0,
+        "peak_gpu_W": 600.0,
+        "period_s": 60.0
+    },
+    
+    "step": {
+        "_description": "Alternating idle/load steps for batch processing",
+        "idle_W": 100.0,
+        "load_W": 650.0,
+        "step_times": [0, 120, 240, 360, 480]
+    },
+    
+    "burst": {
+        "_description": "Short high-power bursts for inference serving",
+        "base_W": 150.0,
+        "burst_W": 700.0,
+        "burst_start_s": 60.0,
+        "burst_duration_s": 30.0
+    },
+    
+    "stochastic": {
+        "_description": "Ornstein-Uhlenbeck random walk for mixed workloads",
+        "mean_W": 400.0,
+        "std_W": 150.0,
+        "theta": 0.1,
+        "min_W": 100.0,
+        "max_W": 700.0
+    }
+}
