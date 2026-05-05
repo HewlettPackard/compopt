@@ -1,0 +1,1654 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#"><link rel="search" title="Search" href="search.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 --><title>Index - CompOpt</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a8c5d26f" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">CompOpt</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">CompOpt</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guides/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/physics.html">Physics Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/rewards.html">Reward System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/rl_training.html">RL Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/llm_agents.html">LLM Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/configuration.html">Configuration Presets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/physics.html">Physics (<code class="docutils literal notranslate"><span class="pre">compopt.physics</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/envs.html">Environments (<code class="docutils literal notranslate"><span class="pre">compopt.envs</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/scheduling.html">Scheduling (<code class="docutils literal notranslate"><span class="pre">compopt.scheduling</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/rewards.html">Rewards (<code class="docutils literal notranslate"><span class="pre">compopt.rewards</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/agents.html">Agents (<code class="docutils literal notranslate"><span class="pre">compopt.agents</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utilities (<code class="docutils literal notranslate"><span class="pre">compopt.utils</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/configs.html">Configuration (<code class="docutils literal notranslate"><span class="pre">compopt.configs</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#J"><strong>J</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a></div>
+</section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/rewards.html#compopt.rewards.functions.CompositeReward.__call__">__call__() (compopt.rewards.functions.CompositeReward method)</a>
+
+        <ul>
+          <li><a href="api/rewards.html#compopt.rewards.functions.CoolantFlowPenalty.__call__">(compopt.rewards.functions.CoolantFlowPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.CostPenalty.__call__">(compopt.rewards.functions.CostPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.EnergyPenalty.__call__">(compopt.rewards.functions.EnergyPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.GridElectricityCostPenalty.__call__">(compopt.rewards.functions.GridElectricityCostPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.HBMPenalty.__call__">(compopt.rewards.functions.HBMPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.PUEReward.__call__">(compopt.rewards.functions.PUEReward method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.QueuePenalty.__call__">(compopt.rewards.functions.QueuePenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.RewardComponent.__call__">(compopt.rewards.functions.RewardComponent method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.SLAViolation.__call__">(compopt.rewards.functions.SLAViolation method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalPenalty.__call__">(compopt.rewards.functions.ThermalPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalViolation.__call__">(compopt.rewards.functions.ThermalViolation method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThroughputReward.__call__">(compopt.rewards.functions.ThroughputReward method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.UtilisationReward.__call__">(compopt.rewards.functions.UtilisationReward method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WaterPenalty.__call__">(compopt.rewards.functions.WaterPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WUEReward.__call__">(compopt.rewards.functions.WUEReward method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/agents.html#compopt.agents.baselines.CalibratedRandomAgent.__init__">__init__() (compopt.agents.baselines.CalibratedRandomAgent method)</a>
+
+        <ul>
+          <li><a href="api/agents.html#compopt.agents.baselines.ChipThermalRuleAgent.__init__">(compopt.agents.baselines.ChipThermalRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.ConstantAgent.__init__">(compopt.agents.baselines.ConstantAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.DataCenterPIDAgent.__init__">(compopt.agents.baselines.DataCenterPIDAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.DataCenterRuleAgent.__init__">(compopt.agents.baselines.DataCenterRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.JointRuleAgent.__init__">(compopt.agents.baselines.JointRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.PIDCoolingAgent.__init__">(compopt.agents.baselines.PIDCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.RandomAgent.__init__">(compopt.agents.baselines.RandomAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.RuleBasedCoolingAgent.__init__">(compopt.agents.baselines.RuleBasedCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.llm_agent.LLMCoolingAgent.__init__">(compopt.agents.llm_agent.LLMCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.llm_agent.LLMJointAgent.__init__">(compopt.agents.llm_agent.LLMJointAgent method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.chip_env.ChipThermalEnv.__init__">(compopt.envs.chip_env.ChipThermalEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.datacenter_env.DataCenterEnv.__init__">(compopt.envs.datacenter_env.DataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.joint_env.JointDataCenterEnv.__init__">(compopt.envs.joint_env.JointDataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.rack_env.RackCoolingEnv.__init__">(compopt.envs.rack_env.RackCoolingEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.scheduling_env.SchedulingEnv.__init__">(compopt.envs.scheduling_env.SchedulingEnv method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.__init__">(compopt.physics.chip.GPUChipModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.chip.PowerProfile.__init__">(compopt.physics.chip.PowerProfile method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.BatchCoolantLoop.__init__">(compopt.physics.fluids.BatchCoolantLoop method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CDU.__init__">(compopt.physics.fluids.CDU method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.__init__">(compopt.physics.fluids.CoolantLoop method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.__init__">(compopt.physics.fluids.CoolingTower method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.__init__">(compopt.physics.server.DataCenterModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.RackModel.__init__">(compopt.physics.server.RackModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.ServerNode.__init__">(compopt.physics.server.ServerNode method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.CompositeReward.__init__">(compopt.rewards.functions.CompositeReward method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.CoolantFlowPenalty.__init__">(compopt.rewards.functions.CoolantFlowPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.CostPenalty.__init__">(compopt.rewards.functions.CostPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.EnergyPenalty.__init__">(compopt.rewards.functions.EnergyPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.GridElectricityCostPenalty.__init__">(compopt.rewards.functions.GridElectricityCostPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.HBMPenalty.__init__">(compopt.rewards.functions.HBMPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.PUEReward.__init__">(compopt.rewards.functions.PUEReward method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.QueuePenalty.__init__">(compopt.rewards.functions.QueuePenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.SLAViolation.__init__">(compopt.rewards.functions.SLAViolation method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalPenalty.__init__">(compopt.rewards.functions.ThermalPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalViolation.__init__">(compopt.rewards.functions.ThermalViolation method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThroughputReward.__init__">(compopt.rewards.functions.ThroughputReward method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.UtilisationReward.__init__">(compopt.rewards.functions.UtilisationReward method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WaterPenalty.__init__">(compopt.rewards.functions.WaterPenalty method)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WUEReward.__init__">(compopt.rewards.functions.WUEReward method)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.__init__">(compopt.scheduling.jobs.Job method)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.__init__">(compopt.scheduling.scheduler.Scheduler method)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.__init__">(compopt.scheduling.scheduler.SchedulerConfig method)</a>
+</li>
+          <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.__init__">(compopt.utils.metrics.EpisodeMetrics method)</a>
+</li>
+          <li><a href="api/utils.html#compopt.utils.vec_env.BatchSimulator.__init__">(compopt.utils.vec_env.BatchSimulator method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.ambient_T_fn">ambient_T_fn (compopt.physics.server.DataCenterModel attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.assigned_nodes">assigned_nodes (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulingPolicy.BACKFILL">BACKFILL (compopt.scheduling.scheduler.SchedulingPolicy attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.basin_C_J_K">basin_C_J_K (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.BatchCoolantLoop">BatchCoolantLoop (class in compopt.physics.fluids)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.vec_env.BatchSimulator">BatchSimulator (class in compopt.utils.vec_env)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType.BENCHMARK">BENCHMARK (compopt.scheduling.jobs.JobType attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#compopt.utils.vec_env.benchmark_throughput">benchmark_throughput() (in module compopt.utils.vec_env)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.build_default_datacenter">build_default_datacenter() (in module compopt.physics.server)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.build_default_rack">build_default_rack() (in module compopt.physics.server)</a>
+</li>
+        <li><a href="api/configs.html#compopt.configs.loader.build_from_config">build_from_config() (in module compopt.configs.loader)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.llm_agent.build_rag_chain">build_rag_chain() (in module compopt.agents.llm_agent)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.C_hbm_J_K">C_hbm_J_K (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.C_J_K">C_J_K (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.c_p_J_kgK">c_p_J_kgK (compopt.physics.fluids.CoolantLoop attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.C_pcb_J_K">C_pcb_J_K (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.C_th_J_K">C_th_J_K (compopt.physics.fluids.CoolantLoop attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.C_tile_J_K">C_tile_J_K (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.C_vrm_J_K">C_vrm_J_K (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.CalibratedRandomAgent">CalibratedRandomAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.CANCELLED">CANCELLED (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU">CDU (class in compopt.physics.fluids)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.cdu">cdu (compopt.physics.server.DataCenterModel attribute)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.chip_env.ChipThermalEnv">ChipThermalEnv (class in compopt.envs.chip_env)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.ChipThermalRuleAgent">ChipThermalRuleAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.vec_env.BatchSimulator.close">close() (compopt.utils.vec_env.BatchSimulator method)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.cold_loop">cold_loop (compopt.physics.fluids.CDU attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.COMPLETED">COMPLETED (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.completed">completed (compopt.scheduling.scheduler.Scheduler attribute)</a>
+</li>
+        <li>
+    compopt.agents
+
+        <ul>
+          <li><a href="api/agents.html#module-compopt.agents">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.agents.baselines
+
+        <ul>
+          <li><a href="api/agents.html#module-compopt.agents.baselines">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.agents.llm_agent
+
+        <ul>
+          <li><a href="api/agents.html#module-compopt.agents.llm_agent">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.configs
+
+        <ul>
+          <li><a href="api/configs.html#module-compopt.configs">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.configs.loader
+
+        <ul>
+          <li><a href="api/configs.html#module-compopt.configs.loader">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.envs
+
+        <ul>
+          <li><a href="api/envs.html#module-compopt.envs">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.envs.chip_env
+
+        <ul>
+          <li><a href="api/envs.html#module-compopt.envs.chip_env">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.envs.datacenter_env
+
+        <ul>
+          <li><a href="api/envs.html#module-compopt.envs.datacenter_env">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.envs.joint_env
+
+        <ul>
+          <li><a href="api/envs.html#module-compopt.envs.joint_env">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.envs.rack_env
+
+        <ul>
+          <li><a href="api/envs.html#module-compopt.envs.rack_env">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.envs.registry
+
+        <ul>
+          <li><a href="api/envs.html#module-compopt.envs.registry">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.envs.scheduling_env
+
+        <ul>
+          <li><a href="api/envs.html#module-compopt.envs.scheduling_env">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.physics
+
+        <ul>
+          <li><a href="api/physics.html#module-compopt.physics">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    compopt.physics.chip
+
+        <ul>
+          <li><a href="api/physics.html#module-compopt.physics.chip">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.physics.fluids
+
+        <ul>
+          <li><a href="api/physics.html#module-compopt.physics.fluids">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.physics.server
+
+        <ul>
+          <li><a href="api/physics.html#module-compopt.physics.server">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.physics.workloads
+
+        <ul>
+          <li><a href="api/physics.html#module-compopt.physics.workloads">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.rewards
+
+        <ul>
+          <li><a href="api/rewards.html#module-compopt.rewards">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.rewards.functions
+
+        <ul>
+          <li><a href="api/rewards.html#module-compopt.rewards.functions">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.scheduling
+
+        <ul>
+          <li><a href="api/scheduling.html#module-compopt.scheduling">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.scheduling.jobs
+
+        <ul>
+          <li><a href="api/scheduling.html#module-compopt.scheduling.jobs">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.scheduling.scheduler
+
+        <ul>
+          <li><a href="api/scheduling.html#module-compopt.scheduling.scheduler">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.utils
+
+        <ul>
+          <li><a href="api/utils.html#module-compopt.utils">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.utils.metrics
+
+        <ul>
+          <li><a href="api/utils.html#module-compopt.utils.metrics">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.utils.plotting
+
+        <ul>
+          <li><a href="api/utils.html#module-compopt.utils.plotting">module</a>
+</li>
+        </ul></li>
+        <li>
+    compopt.utils.vec_env
+
+        <ul>
+          <li><a href="api/utils.html#module-compopt.utils.vec_env">module</a>
+</li>
+        </ul></li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.CompositeReward">CompositeReward (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.config">config (compopt.scheduling.scheduler.Scheduler attribute)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.ConstantAgent">ConstantAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.constrained_cooling_reward">constrained_cooling_reward() (in module compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.coolant_loop">coolant_loop (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.CoolantFlowPenalty">CoolantFlowPenalty (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop">CoolantLoop (class in compopt.physics.fluids)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.cooling_only_reward">cooling_only_reward() (in module compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.cooling_tower">cooling_tower (compopt.physics.server.DataCenterModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower">CoolingTower (class in compopt.physics.fluids)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.cost_history">cost_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.CostPenalty">CostPenalty (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.cpu_trace">cpu_trace (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.cpu_util">cpu_util (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.cpu_util_at">cpu_util_at() (compopt.scheduling.jobs.Job method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType.DATA_PIPELINE">DATA_PIPELINE (compopt.scheduling.jobs.JobType attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.datacenter_reward">datacenter_reward() (in module compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.datacenter_env.DataCenterEnv">DataCenterEnv (class in compopt.envs.datacenter_env)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel">DataCenterModel (class in compopt.physics.server)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/agents.html#compopt.agents.baselines.DataCenterPIDAgent">DataCenterPIDAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.DataCenterRuleAgent">DataCenterRuleAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.deadline_s">deadline_s (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.GridElectricityCostPenalty.dt_s">dt_s (compopt.rewards.functions.GridElectricityCostPenalty attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.elapsed_s">elapsed_s (compopt.scheduling.jobs.Job property)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.end_time_s">end_time_s (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.energy_consumed_J">energy_consumed_J (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/rewards.html#compopt.rewards.functions.EnergyPenalty">EnergyPenalty (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics">EpisodeMetrics (class in compopt.utils.metrics)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.evaluate_agent">evaluate_agent() (in module compopt.utils.metrics)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.evap_fraction">evap_fraction (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.FAILED">FAILED (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.fan_power_W">fan_power_W (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.fan_UA_W_K">fan_UA_W_K (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulingPolicy.FCFS">FCFS (compopt.scheduling.scheduler.SchedulingPolicy attribute)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.FCFSSchedulingAgent">FCFSSchedulingAgent (class in compopt.agents.baselines)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType.FINE_TUNING">FINE_TUNING (compopt.scheduling.jobs.JobType attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.flops_required">flops_required (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.flow_history">flow_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.free_nodes">free_nodes (compopt.scheduling.scheduler.Scheduler property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.PowerProfile.func_per_node">func_per_node (compopt.physics.chip.PowerProfile attribute)</a>, <a href="api/physics.html#id0">[1]</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.G_W_K">G_W_K (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.generate_ai_training_jobs">generate_ai_training_jobs() (in module compopt.scheduling.jobs)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.generate_inference_jobs">generate_inference_jobs() (in module compopt.scheduling.jobs)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.generate_random_jobs">generate_random_jobs() (in module compopt.scheduling.jobs)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType.GENERIC">GENERIC (compopt.scheduling.jobs.JobType attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.get_full_state_for_llm">get_full_state_for_llm() (compopt.physics.server.DataCenterModel method)</a>
+
+        <ul>
+          <li><a href="api/physics.html#compopt.physics.server.RackModel.get_full_state_for_llm">(compopt.physics.server.RackModel method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.get_metrics">get_metrics() (compopt.scheduling.scheduler.Scheduler method)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.get_observation">get_observation() (compopt.physics.chip.GPUChipModel method)</a>
+
+        <ul>
+          <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.get_observation">(compopt.physics.server.DataCenterModel method)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.get_observation">(compopt.scheduling.scheduler.Scheduler method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.get_rack_observation">get_rack_observation() (compopt.physics.server.RackModel method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.get_rack_telemetry">get_rack_telemetry() (compopt.physics.server.RackModel method)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.get_sensors_dict">get_sensors_dict() (compopt.physics.chip.GPUChipModel method)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.get_telemetry">get_telemetry() (compopt.physics.server.ServerNode method)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.gpu_trace">gpu_trace (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.gpu_util_at">gpu_util_at() (compopt.scheduling.jobs.Job method)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.gpu_utilisation">gpu_utilisation (compopt.scheduling.scheduler.Scheduler property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel">GPUChipModel (class in compopt.physics.chip)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.gpus">gpus (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.gpus_per_node">gpus_per_node (compopt.scheduling.jobs.Job attribute)</a>
+
+        <ul>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.gpus_per_node">(compopt.scheduling.scheduler.SchedulerConfig attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.grid_aware_datacenter_reward">grid_aware_datacenter_reward() (in module compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.GridElectricityCostPenalty">GridElectricityCostPenalty (class in compopt.rewards.functions)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/rewards.html#compopt.rewards.functions.HBMPenalty">HBMPenalty (class in compopt.rewards.functions)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.hot_loop">hot_loop (compopt.physics.fluids.CDU attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType.HPC_SIMULATION">HPC_SIMULATION (compopt.scheduling.jobs.JobType attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType.INFERENCE">INFERENCE (compopt.scheduling.jobs.JobType attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.is_active">is_active (compopt.scheduling.jobs.Job property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.is_down">is_down (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.is_throttled">is_throttled() (compopt.physics.chip.GPUChipModel method)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.it_power_W">it_power_W (compopt.physics.server.DataCenterModel property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="J" class="genindex-section">
+  <h2>J</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job">Job (class in compopt.scheduling.jobs)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.job_id">job_id (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.job_type">job_type (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState">JobState (class in compopt.scheduling.jobs)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType">JobType (class in compopt.scheduling.jobs)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.joint_reward">joint_reward() (in module compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.joint_env.JointDataCenterEnv">JointDataCenterEnv (class in compopt.envs.joint_env)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.JointRuleAgent">JointRuleAgent (class in compopt.agents.baselines)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.latent_heat_J_kg">latent_heat_J_kg (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.HBMPenalty.limit_C">limit_C (compopt.rewards.functions.HBMPenalty attribute)</a>
+
+        <ul>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalViolation.limit_C">(compopt.rewards.functions.ThermalViolation attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/envs.html#compopt.envs.registry.list_envs">list_envs() (in module compopt.envs.registry)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/configs.html#compopt.configs.loader.list_presets">list_presets() (in module compopt.configs.loader)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.llm_agent.LLMCoolingAgent">LLMCoolingAgent (class in compopt.agents.llm_agent)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.llm_agent.LLMJointAgent">LLMJointAgent (class in compopt.agents.llm_agent)</a>
+</li>
+        <li><a href="api/configs.html#compopt.configs.loader.load_config">load_config() (in module compopt.configs.loader)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.m_dot_kg_s">m_dot_kg_s (compopt.physics.fluids.CoolantLoop attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.CoolantFlowPenalty.m_dot_min">m_dot_min (compopt.rewards.functions.CoolantFlowPenalty attribute)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.registry.make">make() (in module compopt.envs.registry)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.workloads.make_burst_profile">make_burst_profile() (in module compopt.physics.workloads)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.make_gpu">make_gpu() (in module compopt.physics.chip)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.workloads.make_mixed_profile">make_mixed_profile() (in module compopt.physics.workloads)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.workloads.make_sinusoidal_profile">make_sinusoidal_profile() (in module compopt.physics.workloads)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.workloads.make_step_profile">make_step_profile() (in module compopt.physics.workloads)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.workloads.make_stochastic_profile">make_stochastic_profile() (in module compopt.physics.workloads)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.workloads.make_trace_profile">make_trace_profile() (in module compopt.physics.workloads)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.max_nodes_per_job">max_nodes_per_job (compopt.scheduling.scheduler.SchedulerConfig attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.memory_GB">memory_GB (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.chip_env.ChipThermalEnv.metadata">metadata (compopt.envs.chip_env.ChipThermalEnv attribute)</a>
+
+        <ul>
+          <li><a href="api/envs.html#compopt.envs.datacenter_env.DataCenterEnv.metadata">(compopt.envs.datacenter_env.DataCenterEnv attribute)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.joint_env.JointDataCenterEnv.metadata">(compopt.envs.joint_env.JointDataCenterEnv attribute)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.rack_env.RackCoolingEnv.metadata">(compopt.envs.rack_env.RackCoolingEnv attribute)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.scheduling_env.SchedulingEnv.metadata">(compopt.envs.scheduling_env.SchedulingEnv attribute)</a>
+</li>
+        </ul></li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="api/agents.html#module-compopt.agents">compopt.agents</a>
+</li>
+          <li><a href="api/agents.html#module-compopt.agents.baselines">compopt.agents.baselines</a>
+</li>
+          <li><a href="api/agents.html#module-compopt.agents.llm_agent">compopt.agents.llm_agent</a>
+</li>
+          <li><a href="api/configs.html#module-compopt.configs">compopt.configs</a>
+</li>
+          <li><a href="api/configs.html#module-compopt.configs.loader">compopt.configs.loader</a>
+</li>
+          <li><a href="api/envs.html#module-compopt.envs">compopt.envs</a>
+</li>
+          <li><a href="api/envs.html#module-compopt.envs.chip_env">compopt.envs.chip_env</a>
+</li>
+          <li><a href="api/envs.html#module-compopt.envs.datacenter_env">compopt.envs.datacenter_env</a>
+</li>
+          <li><a href="api/envs.html#module-compopt.envs.joint_env">compopt.envs.joint_env</a>
+</li>
+          <li><a href="api/envs.html#module-compopt.envs.rack_env">compopt.envs.rack_env</a>
+</li>
+          <li><a href="api/envs.html#module-compopt.envs.registry">compopt.envs.registry</a>
+</li>
+          <li><a href="api/envs.html#module-compopt.envs.scheduling_env">compopt.envs.scheduling_env</a>
+</li>
+          <li><a href="api/physics.html#module-compopt.physics">compopt.physics</a>
+</li>
+          <li><a href="api/physics.html#module-compopt.physics.chip">compopt.physics.chip</a>
+</li>
+          <li><a href="api/physics.html#module-compopt.physics.fluids">compopt.physics.fluids</a>
+</li>
+          <li><a href="api/physics.html#module-compopt.physics.server">compopt.physics.server</a>
+</li>
+          <li><a href="api/physics.html#module-compopt.physics.workloads">compopt.physics.workloads</a>
+</li>
+          <li><a href="api/rewards.html#module-compopt.rewards">compopt.rewards</a>
+</li>
+          <li><a href="api/rewards.html#module-compopt.rewards.functions">compopt.rewards.functions</a>
+</li>
+          <li><a href="api/scheduling.html#module-compopt.scheduling">compopt.scheduling</a>
+</li>
+          <li><a href="api/scheduling.html#module-compopt.scheduling.jobs">compopt.scheduling.jobs</a>
+</li>
+          <li><a href="api/scheduling.html#module-compopt.scheduling.scheduler">compopt.scheduling.scheduler</a>
+</li>
+          <li><a href="api/utils.html#module-compopt.utils">compopt.utils</a>
+</li>
+          <li><a href="api/utils.html#module-compopt.utils.metrics">compopt.utils.metrics</a>
+</li>
+          <li><a href="api/utils.html#module-compopt.utils.plotting">compopt.utils.plotting</a>
+</li>
+          <li><a href="api/utils.html#module-compopt.utils.vec_env">compopt.utils.vec_env</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.n_free_nodes">n_free_nodes (compopt.scheduling.scheduler.Scheduler property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.n_switches">n_switches (compopt.physics.server.RackModel attribute)</a>, <a href="api/physics.html#id5">[1]</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.n_thermal_violations">n_thermal_violations (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.CoolantFlowPenalty.name">name (compopt.rewards.functions.CoolantFlowPenalty attribute)</a>
+
+        <ul>
+          <li><a href="api/rewards.html#compopt.rewards.functions.CostPenalty.name">(compopt.rewards.functions.CostPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.EnergyPenalty.name">(compopt.rewards.functions.EnergyPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.GridElectricityCostPenalty.name">(compopt.rewards.functions.GridElectricityCostPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.HBMPenalty.name">(compopt.rewards.functions.HBMPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.PUEReward.name">(compopt.rewards.functions.PUEReward attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.QueuePenalty.name">(compopt.rewards.functions.QueuePenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.RewardComponent.name">(compopt.rewards.functions.RewardComponent attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.SLAViolation.name">(compopt.rewards.functions.SLAViolation attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalPenalty.name">(compopt.rewards.functions.ThermalPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalViolation.name">(compopt.rewards.functions.ThermalViolation attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThroughputReward.name">(compopt.rewards.functions.ThroughputReward attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.UtilisationReward.name">(compopt.rewards.functions.UtilisationReward attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WaterPenalty.name">(compopt.rewards.functions.WaterPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WUEReward.name">(compopt.rewards.functions.WUEReward attribute)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.name">(compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.NODE_FAIL">NODE_FAIL (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.node_id">node_id (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.node_names">node_names (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.nodes_required">nodes_required (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.nx_tiles">nx_tiles (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.ny_tiles">ny_tiles (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/agents.html#compopt.agents.llm_agent.LLMCoolingAgent.OBS_KEYS">OBS_KEYS (compopt.agents.llm_agent.LLMCoolingAgent attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.P_cpu_idle_W">P_cpu_idle_W (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.P_cpu_max_W">P_cpu_max_W (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.P_cpu_W">P_cpu_W (compopt.physics.server.ServerNode property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.P_mem_W">P_mem_W (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.P_nic_W">P_nic_W (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.P_nvme_W">P_nvme_W (compopt.physics.server.ServerNode attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.EnergyPenalty.P_ref_kW">P_ref_kW (compopt.rewards.functions.EnergyPenalty attribute)</a>
+
+        <ul>
+          <li><a href="api/rewards.html#compopt.rewards.functions.GridElectricityCostPenalty.P_ref_kW">(compopt.rewards.functions.GridElectricityCostPenalty attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.P_switch_W">P_switch_W (compopt.physics.server.RackModel attribute)</a>, <a href="api/physics.html#id4">[1]</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.P_total_W">P_total_W (compopt.physics.server.RackModel property)</a>
+
+        <ul>
+          <li><a href="api/physics.html#compopt.physics.server.ServerNode.P_total_W">(compopt.physics.server.ServerNode property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/agents.html#compopt.agents.baselines.PIDCoolingAgent">PIDCoolingAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.plotting.plot_comparison">plot_comparison() (in module compopt.utils.plotting)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.plotting.plot_datacenter_episode">plot_datacenter_episode() (in module compopt.utils.plotting)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.plotting.plot_thermal_episode">plot_thermal_episode() (in module compopt.utils.plotting)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.policy">policy (compopt.scheduling.scheduler.SchedulerConfig attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.power_budget_W">power_budget_W (compopt.scheduling.jobs.Job attribute)</a>
+
+        <ul>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.power_budget_W">(compopt.scheduling.scheduler.SchedulerConfig attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.power_cost_dollar_per_kWh">power_cost_dollar_per_kWh (compopt.physics.server.DataCenterModel attribute)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.power_history">power_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.power_profile">power_profile (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.PowerProfile.power_vector">power_vector() (compopt.physics.chip.PowerProfile method)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.PowerProfile">PowerProfile (class in compopt.physics.chip)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/agents.html#compopt.agents.baselines.CalibratedRandomAgent.predict">predict() (compopt.agents.baselines.CalibratedRandomAgent method)</a>
+
+        <ul>
+          <li><a href="api/agents.html#compopt.agents.baselines.ChipThermalRuleAgent.predict">(compopt.agents.baselines.ChipThermalRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.ConstantAgent.predict">(compopt.agents.baselines.ConstantAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.DataCenterPIDAgent.predict">(compopt.agents.baselines.DataCenterPIDAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.DataCenterRuleAgent.predict">(compopt.agents.baselines.DataCenterRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.FCFSSchedulingAgent.predict">(compopt.agents.baselines.FCFSSchedulingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.JointRuleAgent.predict">(compopt.agents.baselines.JointRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.PIDCoolingAgent.predict">(compopt.agents.baselines.PIDCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.RandomAgent.predict">(compopt.agents.baselines.RandomAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.RuleBasedCoolingAgent.predict">(compopt.agents.baselines.RuleBasedCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.llm_agent.LLMCoolingAgent.predict">(compopt.agents.llm_agent.LLMCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.llm_agent.LLMJointAgent.predict">(compopt.agents.llm_agent.LLMJointAgent method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.PREEMPTED">PREEMPTED (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.preemption_enabled">preemption_enabled (compopt.scheduling.scheduler.SchedulerConfig attribute)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.print_metrics">print_metrics() (in module compopt.utils.metrics)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.priority">priority (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulingPolicy.PRIORITY">PRIORITY (compopt.scheduling.scheduler.SchedulingPolicy attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.psu_efficiency">psu_efficiency (compopt.physics.server.RackModel attribute)</a>, <a href="api/physics.html#id6">[1]</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.PUE">PUE (compopt.physics.server.DataCenterModel property)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.pue_history">pue_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.PUEReward">PUEReward (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.pump_power_W">pump_power_W (compopt.physics.fluids.CDU property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.pump_power_W_per_kgs">pump_power_W_per_kgs (compopt.physics.fluids.CDU attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Q" class="genindex-section">
+  <h2>Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.queue">queue (compopt.scheduling.scheduler.Scheduler attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.QUEUED">QUEUED (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.QueuePenalty">QueuePenalty (class in compopt.rewards.functions)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_hbm_to_coolant_K_W">R_hbm_to_coolant_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_hbm_to_pcb_K_W">R_hbm_to_pcb_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_lateral_tile_K_W">R_lateral_tile_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_pcb_to_coolant_K_W">R_pcb_to_coolant_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_tile_to_coolant_K_W">R_tile_to_coolant_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_tile_to_pcb_K_W">R_tile_to_pcb_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_vrm_to_coolant_K_W">R_vrm_to_coolant_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.R_vrm_to_pcb_K_W">R_vrm_to_pcb_K_W (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.rack_coolant">rack_coolant (compopt.physics.server.RackModel attribute)</a>, <a href="api/physics.html#id2">[1]</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.rack_id">rack_id (compopt.physics.server.RackModel attribute)</a>, <a href="api/physics.html#id3">[1]</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.rack_env.RackCoolingEnv">RackCoolingEnv (class in compopt.envs.rack_env)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel">RackModel (class in compopt.physics.server)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.racks">racks (compopt.physics.server.DataCenterModel attribute)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.RandomAgent">RandomAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.record">record() (compopt.utils.metrics.EpisodeMetrics method)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.WaterPenalty.ref_L">ref_L (compopt.rewards.functions.WaterPenalty attribute)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.registry.register">register() (in module compopt.envs.registry)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.remaining_s">remaining_s (compopt.scheduling.jobs.Job property)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.chip_env.ChipThermalEnv.render">render() (compopt.envs.chip_env.ChipThermalEnv method)</a>
+
+        <ul>
+          <li><a href="api/envs.html#compopt.envs.datacenter_env.DataCenterEnv.render">(compopt.envs.datacenter_env.DataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.joint_env.JointDataCenterEnv.render">(compopt.envs.joint_env.JointDataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.rack_env.RackCoolingEnv.render">(compopt.envs.rack_env.RackCoolingEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.scheduling_env.SchedulingEnv.render">(compopt.envs.scheduling_env.SchedulingEnv method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/agents.html#compopt.agents.baselines.CalibratedRandomAgent.reset">reset() (compopt.agents.baselines.CalibratedRandomAgent method)</a>
+
+        <ul>
+          <li><a href="api/agents.html#compopt.agents.baselines.ChipThermalRuleAgent.reset">(compopt.agents.baselines.ChipThermalRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.ConstantAgent.reset">(compopt.agents.baselines.ConstantAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.DataCenterPIDAgent.reset">(compopt.agents.baselines.DataCenterPIDAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.DataCenterRuleAgent.reset">(compopt.agents.baselines.DataCenterRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.FCFSSchedulingAgent.reset">(compopt.agents.baselines.FCFSSchedulingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.JointRuleAgent.reset">(compopt.agents.baselines.JointRuleAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.PIDCoolingAgent.reset">(compopt.agents.baselines.PIDCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.RandomAgent.reset">(compopt.agents.baselines.RandomAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.baselines.RuleBasedCoolingAgent.reset">(compopt.agents.baselines.RuleBasedCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.llm_agent.LLMCoolingAgent.reset">(compopt.agents.llm_agent.LLMCoolingAgent method)</a>
+</li>
+          <li><a href="api/agents.html#compopt.agents.llm_agent.LLMJointAgent.reset">(compopt.agents.llm_agent.LLMJointAgent method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.chip_env.ChipThermalEnv.reset">(compopt.envs.chip_env.ChipThermalEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.datacenter_env.DataCenterEnv.reset">(compopt.envs.datacenter_env.DataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.joint_env.JointDataCenterEnv.reset">(compopt.envs.joint_env.JointDataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.rack_env.RackCoolingEnv.reset">(compopt.envs.rack_env.RackCoolingEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.scheduling_env.SchedulingEnv.reset">(compopt.envs.scheduling_env.SchedulingEnv method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.reset">(compopt.physics.chip.GPUChipModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.BatchCoolantLoop.reset">(compopt.physics.fluids.BatchCoolantLoop method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CDU.reset">(compopt.physics.fluids.CDU method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.reset">(compopt.physics.fluids.CoolantLoop method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.reset">(compopt.physics.fluids.CoolingTower method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.reset">(compopt.physics.server.DataCenterModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.RackModel.reset">(compopt.physics.server.RackModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.ServerNode.reset">(compopt.physics.server.ServerNode method)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.reset">(compopt.scheduling.scheduler.Scheduler method)</a>
+</li>
+          <li><a href="api/utils.html#compopt.utils.vec_env.BatchSimulator.reset">(compopt.utils.vec_env.BatchSimulator method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.reward_history">reward_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.RewardComponent">RewardComponent (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.rho_kg_m3">rho_kg_m3 (compopt.physics.fluids.CoolantLoop attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulingPolicy.RL_AGENT">RL_AGENT (compopt.scheduling.scheduler.SchedulingPolicy attribute)</a>
+</li>
+        <li><a href="api/agents.html#compopt.agents.baselines.RuleBasedCoolingAgent">RuleBasedCoolingAgent (class in compopt.agents.baselines)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.RUNNING">RUNNING (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.running">running (compopt.scheduling.scheduler.Scheduler attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler">Scheduler (class in compopt.scheduling.scheduler)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig">SchedulerConfig (class in compopt.scheduling.scheduler)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.scheduling_reward">scheduling_reward() (in module compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.scheduling_env.SchedulingEnv">SchedulingEnv (class in compopt.envs.scheduling_env)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulingPolicy">SchedulingPolicy (class in compopt.scheduling.scheduler)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode">ServerNode (class in compopt.physics.server)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.RackModel.servers">servers (compopt.physics.server.RackModel attribute)</a>, <a href="api/physics.html#id1">[1]</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulingPolicy.SJF">SJF (compopt.scheduling.scheduler.SchedulingPolicy attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.SLAViolation">SLAViolation (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.start_time_s">start_time_s (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.state">state (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/envs.html#compopt.envs.chip_env.ChipThermalEnv.step">step() (compopt.envs.chip_env.ChipThermalEnv method)</a>
+
+        <ul>
+          <li><a href="api/envs.html#compopt.envs.datacenter_env.DataCenterEnv.step">(compopt.envs.datacenter_env.DataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.joint_env.JointDataCenterEnv.step">(compopt.envs.joint_env.JointDataCenterEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.rack_env.RackCoolingEnv.step">(compopt.envs.rack_env.RackCoolingEnv method)</a>
+</li>
+          <li><a href="api/envs.html#compopt.envs.scheduling_env.SchedulingEnv.step">(compopt.envs.scheduling_env.SchedulingEnv method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.step">(compopt.physics.chip.GPUChipModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.BatchCoolantLoop.step">(compopt.physics.fluids.BatchCoolantLoop method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CDU.step">(compopt.physics.fluids.CDU method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.step">(compopt.physics.fluids.CoolantLoop method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.step">(compopt.physics.fluids.CoolingTower method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.step">(compopt.physics.server.DataCenterModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.RackModel.step">(compopt.physics.server.RackModel method)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.ServerNode.step">(compopt.physics.server.ServerNode method)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.step">(compopt.scheduling.scheduler.Scheduler method)</a>
+</li>
+          <li><a href="api/utils.html#compopt.utils.vec_env.BatchSimulator.step">(compopt.utils.vec_env.BatchSimulator method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.submit">submit() (compopt.scheduling.scheduler.Scheduler method)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.submit_batch">submit_batch() (compopt.scheduling.scheduler.Scheduler method)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.submit_time_s">submit_time_s (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.summary">summary() (compopt.utils.metrics.EpisodeMetrics method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.T_ambient_C">T_ambient_C (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.T_basin_C">T_basin_C (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.T_C">T_C (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.T_coolant_C">T_coolant_C (compopt.physics.fluids.CoolantLoop attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.T_facility_C">T_facility_C (compopt.physics.fluids.CDU attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.ServerNode.T_gpu_hotspot_C">T_gpu_hotspot_C (compopt.physics.server.ServerNode property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.T_hotspot_C">T_hotspot_C (compopt.physics.server.DataCenterModel property)</a>
+
+        <ul>
+          <li><a href="api/physics.html#compopt.physics.server.RackModel.T_hotspot_C">(compopt.physics.server.RackModel property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.T_hotspot_history">T_hotspot_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.T_in_C">T_in_C (compopt.physics.fluids.CoolantLoop attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.T_init_die_C">T_init_die_C (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.T_init_others_C">T_init_others_C (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.T_max_die_C">T_max_die_C (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.T_max_hbm_C">T_max_hbm_C (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.T_max_vrm_C">T_max_vrm_C (compopt.physics.chip.GPUChipModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.T_out_C">T_out_C (compopt.physics.fluids.CoolantLoop property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.T_return_from_racks_C">T_return_from_racks_C (compopt.physics.fluids.CDU property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.T_supply_C">T_supply_C (compopt.physics.fluids.CoolingTower property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.T_supply_to_racks_C">T_supply_to_racks_C (compopt.physics.fluids.CDU property)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.T_wetbulb_C">T_wetbulb_C (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/rewards.html#compopt.rewards.functions.ThermalPenalty.target_C">target_C (compopt.rewards.functions.ThermalPenalty attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulingPolicy.THERMAL_AWARE">THERMAL_AWARE (compopt.scheduling.scheduler.SchedulingPolicy attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.thermal_sensitive">thermal_sensitive (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.ThermalPenalty">ThermalPenalty (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.ThermalViolation">ThermalViolation (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.ThroughputReward">ThroughputReward (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.time_history">time_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.time_s">time_s (compopt.physics.chip.GPUChipModel attribute)</a>
+
+        <ul>
+          <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.time_s">(compopt.physics.server.DataCenterModel attribute)</a>
+</li>
+          <li><a href="api/physics.html#compopt.physics.server.RackModel.time_s">(compopt.physics.server.RackModel attribute)</a>
+</li>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.time_s">(compopt.scheduling.scheduler.Scheduler attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobState.TIMEOUT">TIMEOUT (compopt.scheduling.jobs.JobState attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.to_raps_dict">to_raps_dict() (compopt.scheduling.jobs.Job method)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.total_cost_dollar">total_cost_dollar (compopt.physics.server.DataCenterModel property)</a>
+
+        <ul>
+          <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.total_cost_dollar">(compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.total_jobs_completed">total_jobs_completed (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.total_nodes">total_nodes (compopt.scheduling.scheduler.SchedulerConfig attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.total_power_W">total_power_W (compopt.physics.server.DataCenterModel property)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.total_water_L">total_water_L (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.scheduler.SchedulerConfig.trace_quanta_s">trace_quanta_s (compopt.scheduling.scheduler.SchedulerConfig attribute)</a>
+</li>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.JobType.TRAINING">TRAINING (compopt.scheduling.jobs.JobType attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.fluids.CDU.UA_W_K">UA_W_K (compopt.physics.fluids.CDU attribute)</a>
+</li>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.util_history">util_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.chip.GPUChipModel.utilisation">utilisation (compopt.physics.chip.GPUChipModel property)</a>
+
+        <ul>
+          <li><a href="api/scheduling.html#compopt.scheduling.scheduler.Scheduler.utilisation">(compopt.scheduling.scheduler.Scheduler property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.UtilisationReward">UtilisationReward (class in compopt.rewards.functions)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolantLoop.V_m3">V_m3 (compopt.physics.fluids.CoolantLoop attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/scheduling.html#compopt.scheduling.jobs.Job.wall_time_s">wall_time_s (compopt.scheduling.jobs.Job attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.water_cost_dollar_per_L">water_cost_dollar_per_L (compopt.physics.server.DataCenterModel attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.fluids.CoolingTower.water_used_L">water_used_L (compopt.physics.fluids.CoolingTower attribute)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.WaterPenalty">WaterPenalty (class in compopt.rewards.functions)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.CoolantFlowPenalty.weight">weight (compopt.rewards.functions.CoolantFlowPenalty attribute)</a>
+
+        <ul>
+          <li><a href="api/rewards.html#compopt.rewards.functions.CostPenalty.weight">(compopt.rewards.functions.CostPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.EnergyPenalty.weight">(compopt.rewards.functions.EnergyPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.GridElectricityCostPenalty.weight">(compopt.rewards.functions.GridElectricityCostPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.HBMPenalty.weight">(compopt.rewards.functions.HBMPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.PUEReward.weight">(compopt.rewards.functions.PUEReward attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.QueuePenalty.weight">(compopt.rewards.functions.QueuePenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.RewardComponent.weight">(compopt.rewards.functions.RewardComponent attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.SLAViolation.weight">(compopt.rewards.functions.SLAViolation attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalPenalty.weight">(compopt.rewards.functions.ThermalPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThermalViolation.weight">(compopt.rewards.functions.ThermalViolation attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.ThroughputReward.weight">(compopt.rewards.functions.ThroughputReward attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.UtilisationReward.weight">(compopt.rewards.functions.UtilisationReward attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WaterPenalty.weight">(compopt.rewards.functions.WaterPenalty attribute)</a>
+</li>
+          <li><a href="api/rewards.html#compopt.rewards.functions.WUEReward.weight">(compopt.rewards.functions.WUEReward attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#compopt.utils.metrics.EpisodeMetrics.wue_history">wue_history (compopt.utils.metrics.EpisodeMetrics attribute)</a>
+</li>
+        <li><a href="api/physics.html#compopt.physics.server.DataCenterModel.WUE_L_per_kWh">WUE_L_per_kWh (compopt.physics.server.DataCenterModel property)</a>
+</li>
+        <li><a href="api/rewards.html#compopt.rewards.functions.WUEReward">WUEReward (class in compopt.rewards.functions)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, CompOpt Contributors &amp; Oak Ridge National Laboratory
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/compopt-benchmark/compopt" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=38b66d78"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>

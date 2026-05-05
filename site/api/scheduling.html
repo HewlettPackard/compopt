@@ -1,0 +1,1166 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Rewards (compopt.rewards)" href="rewards.html"><link rel="prev" title="Environments (compopt.envs)" href="envs.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Scheduling (compopt.scheduling) - CompOpt</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a8c5d26f" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">CompOpt</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">CompOpt</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/physics.html">Physics Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/rewards.html">Reward System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/rl_training.html">RL Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/llm_agents.html">LLM Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/configuration.html">Configuration Presets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="physics.html">Physics (<code class="docutils literal notranslate"><span class="pre">compopt.physics</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envs.html">Environments (<code class="docutils literal notranslate"><span class="pre">compopt.envs</span></code>)</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Scheduling (<code class="docutils literal notranslate"><span class="pre">compopt.scheduling</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rewards.html">Rewards (<code class="docutils literal notranslate"><span class="pre">compopt.rewards</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html">Agents (<code class="docutils literal notranslate"><span class="pre">compopt.agents</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities (<code class="docutils literal notranslate"><span class="pre">compopt.utils</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configs.html">Configuration (<code class="docutils literal notranslate"><span class="pre">compopt.configs</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citation.html">Citation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/scheduling.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-compopt.scheduling">
+<span id="scheduling-compopt-scheduling"></span><h1>Scheduling (<code class="docutils literal notranslate"><span class="pre">compopt.scheduling</span></code>)<a class="headerlink" href="#module-compopt.scheduling" title="Link to this heading">¶</a></h1>
+<section id="compopt-scheduling">
+<h2>compopt.scheduling<a class="headerlink" href="#compopt-scheduling" title="Link to this heading">¶</a></h2>
+<p>Job scheduling and workload generation for data-center simulation.</p>
+<section id="sub-modules">
+<h3>Sub-modules<a class="headerlink" href="#sub-modules" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>jobs</dt><dd><p>RAPS-compatible job model and synthetic generators.</p>
+</dd>
+<dt>scheduler</dt><dd><p>Multi-policy scheduler (FCFS, SJF, priority, backfill, thermal-aware).</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="module-compopt.scheduling.jobs">
+<span id="jobs"></span><h2>Jobs<a class="headerlink" href="#module-compopt.scheduling.jobs" title="Link to this heading">¶</a></h2>
+<section id="compopt-scheduling-jobs">
+<h3>compopt.scheduling.jobs<a class="headerlink" href="#compopt-scheduling-jobs" title="Link to this heading">¶</a></h3>
+<p>RAPS-compatible job model and synthetic job generators.</p>
+<p>A <strong>Job</strong> is a compute workload submitted to a data center scheduler.
+Each job specifies resource requirements (nodes, GPUs), wall-time,
+power traces (CPU/GPU utilisation over time), and priority.</p>
+<p>Adapted from Anonymous RAPS <code class="docutils literal notranslate"><span class="pre">job_dict</span></code> format with extensions for
+AI/ML workload characterisation.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.scheduling.jobs.</span></span><span class="sig-name descname"><span class="pre">JobState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#JobState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.JobState" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a></p>
+<p>Job lifecycle states (RAPS-compatible).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.QUEUED">
+<span class="sig-name descname"><span class="pre">QUEUED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'QUEUED'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.QUEUED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.RUNNING">
+<span class="sig-name descname"><span class="pre">RUNNING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RUNNING'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.RUNNING" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.COMPLETED">
+<span class="sig-name descname"><span class="pre">COMPLETED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'COMPLETED'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.COMPLETED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.FAILED">
+<span class="sig-name descname"><span class="pre">FAILED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FAILED'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.FAILED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.CANCELLED">
+<span class="sig-name descname"><span class="pre">CANCELLED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CANCELLED'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.CANCELLED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.TIMEOUT">
+<span class="sig-name descname"><span class="pre">TIMEOUT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'TIMEOUT'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.TIMEOUT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.NODE_FAIL">
+<span class="sig-name descname"><span class="pre">NODE_FAIL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NODE_FAIL'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.NODE_FAIL" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobState.PREEMPTED">
+<span class="sig-name descname"><span class="pre">PREEMPTED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PREEMPTED'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobState.PREEMPTED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.scheduling.jobs.</span></span><span class="sig-name descname"><span class="pre">JobType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#JobType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.JobType" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a></p>
+<p>Workload type labels for AI/ML job characterisation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType.TRAINING">
+<span class="sig-name descname"><span class="pre">TRAINING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'training'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobType.TRAINING" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType.INFERENCE">
+<span class="sig-name descname"><span class="pre">INFERENCE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'inference'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobType.INFERENCE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType.FINE_TUNING">
+<span class="sig-name descname"><span class="pre">FINE_TUNING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fine_tuning'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobType.FINE_TUNING" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType.DATA_PIPELINE">
+<span class="sig-name descname"><span class="pre">DATA_PIPELINE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'data_pipeline'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobType.DATA_PIPELINE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType.HPC_SIMULATION">
+<span class="sig-name descname"><span class="pre">HPC_SIMULATION</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'hpc_simulation'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobType.HPC_SIMULATION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType.BENCHMARK">
+<span class="sig-name descname"><span class="pre">BENCHMARK</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'benchmark'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobType.BENCHMARK" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.JobType.GENERIC">
+<span class="sig-name descname"><span class="pre">GENERIC</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'generic'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.JobType.GENERIC" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.scheduling.jobs.</span></span><span class="sig-name descname"><span class="pre">Job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unnamed_job'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpus_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wall_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3600.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu_trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu_trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">submit_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">JobType.GENERIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_budget_W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flops_required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_GB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deadline_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_sensitive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">JobState.QUEUED</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assigned_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_consumed_J</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#Job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.Job" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A compute job to be scheduled on data-center nodes.</p>
+<section id="raps-compatible-fields">
+<h3>RAPS-compatible fields<a class="headerlink" href="#raps-compatible-fields" title="Link to this heading">¶</a></h3>
+<p>job_id            : unique identifier
+name              : human-readable name
+nodes_required    : number of compute nodes requested
+gpus_per_node     : GPUs per node (for GPU-aware scheduling)
+wall_time_s       : requested wall-clock time [s]
+cpu_trace         : CPU utilisation trace [0, n_cpus] or scalar
+gpu_trace         : GPU utilisation trace [0, n_gpus] or scalar
+submit_time_s     : time at which job enters the queue [s]
+priority          : scheduling priority (higher = more important)</p>
+</section>
+<section id="compopt-extensions">
+<h3>CompOpt extensions<a class="headerlink" href="#compopt-extensions" title="Link to this heading">¶</a></h3>
+<p>job_type          : AI/ML workload type label
+power_budget_W    : optional per-job power cap [W]
+flops_required    : total compute requirement [FLOP]
+memory_GB         : per-node memory requirement [GB]
+deadline_s        : optional hard deadline [s from submit]
+thermal_sensitive : if True, job performance degrades with throttling</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.job_id">
+<span class="sig-name descname"><span class="pre">job_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.job_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'unnamed_job'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.nodes_required">
+<span class="sig-name descname"><span class="pre">nodes_required</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.nodes_required" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.gpus_per_node">
+<span class="sig-name descname"><span class="pre">gpus_per_node</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.gpus_per_node" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.wall_time_s">
+<span class="sig-name descname"><span class="pre">wall_time_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3600.0</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.wall_time_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.cpu_trace">
+<span class="sig-name descname"><span class="pre">cpu_trace</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.cpu_trace" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.gpu_trace">
+<span class="sig-name descname"><span class="pre">gpu_trace</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.8</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.gpu_trace" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.submit_time_s">
+<span class="sig-name descname"><span class="pre">submit_time_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.submit_time_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.priority">
+<span class="sig-name descname"><span class="pre">priority</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.priority" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.job_type">
+<span class="sig-name descname"><span class="pre">job_type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#compopt.scheduling.jobs.JobType" title="compopt.scheduling.jobs.JobType"><span class="pre">JobType</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'generic'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.job_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.power_budget_W">
+<span class="sig-name descname"><span class="pre">power_budget_W</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.power_budget_W" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.flops_required">
+<span class="sig-name descname"><span class="pre">flops_required</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.flops_required" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.memory_GB">
+<span class="sig-name descname"><span class="pre">memory_GB</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.memory_GB" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.deadline_s">
+<span class="sig-name descname"><span class="pre">deadline_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.deadline_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.thermal_sensitive">
+<span class="sig-name descname"><span class="pre">thermal_sensitive</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.thermal_sensitive" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.state">
+<span class="sig-name descname"><span class="pre">state</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#compopt.scheduling.jobs.JobState" title="compopt.scheduling.jobs.JobState"><span class="pre">JobState</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'QUEUED'</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.start_time_s">
+<span class="sig-name descname"><span class="pre">start_time_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.start_time_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.end_time_s">
+<span class="sig-name descname"><span class="pre">end_time_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.end_time_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.assigned_nodes">
+<span class="sig-name descname"><span class="pre">assigned_nodes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.assigned_nodes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.energy_consumed_J">
+<span class="sig-name descname"><span class="pre">energy_consumed_J</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.energy_consumed_J" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.elapsed_s">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">elapsed_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.elapsed_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.remaining_s">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">remaining_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.remaining_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.is_active">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_active</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><a class="headerlink" href="#compopt.scheduling.jobs.Job.is_active" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.gpu_util_at">
+<span class="sig-name descname"><span class="pre">gpu_util_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_relative</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#Job.gpu_util_at"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.Job.gpu_util_at" title="Link to this definition">¶</a></dt>
+<dd><p>GPU utilisation at time <em>t_relative</em> seconds since job start.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>t_relative</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.cpu_util_at">
+<span class="sig-name descname"><span class="pre">cpu_util_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_relative</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#Job.cpu_util_at"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.Job.cpu_util_at" title="Link to this definition">¶</a></dt>
+<dd><p>CPU utilisation at time <em>t_relative</em> seconds since job start.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>t_relative</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.to_raps_dict">
+<span class="sig-name descname"><span class="pre">to_raps_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#Job.to_raps_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.Job.to_raps_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Export as RAPS-compatible job_dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.Job.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unnamed_job'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpus_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wall_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3600.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu_trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu_trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">submit_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">JobType.GENERIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_budget_W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flops_required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_GB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deadline_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_sensitive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">JobState.QUEUED</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assigned_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_consumed_J</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.scheduling.jobs.Job.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>nodes_required</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>gpus_per_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>wall_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>cpu_trace</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>gpu_trace</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>submit_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>priority</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>job_type</strong> (<a class="reference internal" href="#compopt.scheduling.jobs.JobType" title="compopt.scheduling.jobs.JobType"><em>JobType</em></a>)</p></li>
+<li><p><strong>power_budget_W</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>flops_required</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>memory_GB</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>deadline_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>thermal_sensitive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="#compopt.scheduling.jobs.JobState" title="compopt.scheduling.jobs.JobState"><em>JobState</em></a>)</p></li>
+<li><p><strong>start_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>end_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>assigned_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>energy_consumed_J</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>nodes_required</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>gpus_per_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>wall_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>cpu_trace</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>gpu_trace</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>submit_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>priority</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>job_type</strong> (<a class="reference internal" href="#compopt.scheduling.jobs.JobType" title="compopt.scheduling.jobs.JobType"><em>JobType</em></a>)</p></li>
+<li><p><strong>power_budget_W</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>flops_required</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>memory_GB</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>deadline_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>thermal_sensitive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="#compopt.scheduling.jobs.JobState" title="compopt.scheduling.jobs.JobState"><em>JobState</em></a>)</p></li>
+<li><p><strong>start_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>end_time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>assigned_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>energy_consumed_J</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.generate_random_jobs">
+<span class="sig-prename descclassname"><span class="pre">compopt.scheduling.jobs.</span></span><span class="sig-name descname"><span class="pre">generate_random_jobs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_gpus_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_wall_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_wall_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">43200.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_arrival_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_end_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#generate_random_jobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.generate_random_jobs" title="Link to this definition">¶</a></dt>
+<dd><p>Generate <em>n_jobs</em> random compute jobs with Poisson arrivals
+(RAPS-compatible synthetic workload generator).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_jobs</strong> (<em>number</em><em> of </em><em>jobs to create</em>)</p></li>
+<li><p><strong>max_nodes</strong> (<em>maximum nodes any single job can request</em>)</p></li>
+<li><p><strong>max_wall_s</strong> (<em>maximum wall-time</em><em> [</em><em>s</em><em>]</em>)</p></li>
+<li><p><strong>mean_arrival_s</strong> (<em>mean inter-arrival time</em><em> [</em><em>s</em><em>]</em>)</p></li>
+<li><p><strong>seed</strong> (<em>random seed for reproducibility</em>)</p></li>
+<li><p><strong>job_end_probs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em> of </em><em>{state_name: probability}</em>)</p></li>
+<li><p><strong>max_gpus_per_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>min_wall_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job">Job</a>] sorted by submit_time_s</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.generate_ai_training_jobs">
+<span class="sig-prename descclassname"><span class="pre">compopt.scheduling.jobs.</span></span><span class="sig-name descname"><span class="pre">generate_ai_training_jobs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_arrival_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#generate_ai_training_jobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.generate_ai_training_jobs" title="Link to this definition">¶</a></dt>
+<dd><p>Generate AI training workloads with high GPU utilisation and long durations.
+Simulates LLM training, vision model training, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>mean_arrival_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.scheduling.jobs.generate_inference_jobs">
+<span class="sig-prename descclassname"><span class="pre">compopt.scheduling.jobs.</span></span><span class="sig-name descname"><span class="pre">generate_inference_jobs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_arrival_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/jobs.html#generate_inference_jobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.jobs.generate_inference_jobs" title="Link to this definition">¶</a></dt>
+<dd><p>Generate inference-serving workloads: short, bursty, high GPU util.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>mean_arrival_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-compopt.scheduling.scheduler">
+<span id="scheduler"></span><h2>Scheduler<a class="headerlink" href="#module-compopt.scheduling.scheduler" title="Link to this heading">¶</a></h2>
+<section id="compopt-scheduling-scheduler">
+<h3>compopt.scheduling.scheduler<a class="headerlink" href="#compopt-scheduling-scheduler" title="Link to this heading">¶</a></h3>
+<p>Job schedulers for data-center resource allocation.</p>
+<p>Implements RAPS-compatible scheduling policies:
+- <strong>FCFS</strong>  : First-Come First-Served
+- <strong>SJF</strong>   : Shortest Job First
+- <strong>PRQ</strong>   : Priority Queue
+- <strong>Backfill</strong>: FCFS with backfill (smaller jobs fill gaps)
+- <strong>ThermalAware</strong>: Temperature-aware scheduling (CompOpt extension)</p>
+<p>The scheduler integrates with the physical <code class="docutils literal notranslate"><span class="pre">DataCenterModel</span></code> to
+enable co-optimisation of job placement and cooling.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulingPolicy">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.scheduling.scheduler.</span></span><span class="sig-name descname"><span class="pre">SchedulingPolicy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#SchedulingPolicy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulingPolicy" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulingPolicy.FCFS">
+<span class="sig-name descname"><span class="pre">FCFS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fcfs'</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulingPolicy.FCFS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulingPolicy.SJF">
+<span class="sig-name descname"><span class="pre">SJF</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sjf'</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulingPolicy.SJF" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulingPolicy.PRIORITY">
+<span class="sig-name descname"><span class="pre">PRIORITY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'prq'</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulingPolicy.PRIORITY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulingPolicy.BACKFILL">
+<span class="sig-name descname"><span class="pre">BACKFILL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'backfill'</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulingPolicy.BACKFILL" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulingPolicy.THERMAL_AWARE">
+<span class="sig-name descname"><span class="pre">THERMAL_AWARE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'thermal_aware'</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulingPolicy.THERMAL_AWARE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulingPolicy.RL_AGENT">
+<span class="sig-name descname"><span class="pre">RL_AGENT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rl_agent'</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulingPolicy.RL_AGENT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.scheduling.scheduler.</span></span><span class="sig-name descname"><span class="pre">SchedulerConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpus_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">policy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SchedulingPolicy.FCFS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_quanta_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_budget_W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_nodes_per_job</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preemption_enabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#SchedulerConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Scheduler configuration (RAPS-compatible).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>total_nodes</strong> (<em>total compute nodes in the cluster</em>)</p></li>
+<li><p><strong>gpus_per_node</strong> (<em>GPUs per node</em>)</p></li>
+<li><p><strong>policy</strong> (<em>scheduling policy</em>)</p></li>
+<li><p><strong>trace_quanta_s</strong> (<em>time between power samples</em><em> [</em><em>s</em><em>]</em>)</p></li>
+<li><p><strong>power_budget_W</strong> (<em>optional cluster-wide power cap</em><em> [</em><em>W</em><em>]</em>)</p></li>
+<li><p><strong>max_nodes_per_job</strong> (<em>maximum nodes per job</em>)</p></li>
+<li><p><strong>preemption_enabled</strong> (<em>whether higher-priority jobs can preempt</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.total_nodes">
+<span class="sig-name descname"><span class="pre">total_nodes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.total_nodes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.gpus_per_node">
+<span class="sig-name descname"><span class="pre">gpus_per_node</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.gpus_per_node" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.policy">
+<span class="sig-name descname"><span class="pre">policy</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy" title="compopt.scheduling.scheduler.SchedulingPolicy"><span class="pre">SchedulingPolicy</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fcfs'</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.policy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.trace_quanta_s">
+<span class="sig-name descname"><span class="pre">trace_quanta_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15.0</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.trace_quanta_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.power_budget_W">
+<span class="sig-name descname"><span class="pre">power_budget_W</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.power_budget_W" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.max_nodes_per_job">
+<span class="sig-name descname"><span class="pre">max_nodes_per_job</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.max_nodes_per_job" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.preemption_enabled">
+<span class="sig-name descname"><span class="pre">preemption_enabled</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.preemption_enabled" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.SchedulerConfig.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpus_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">policy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SchedulingPolicy.FCFS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_quanta_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_budget_W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_nodes_per_job</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preemption_enabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.scheduling.scheduler.SchedulerConfig.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>total_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>gpus_per_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>policy</strong> (<a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy" title="compopt.scheduling.scheduler.SchedulingPolicy"><em>SchedulingPolicy</em></a>)</p></li>
+<li><p><strong>trace_quanta_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>power_budget_W</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>max_nodes_per_job</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>preemption_enabled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.scheduling.scheduler.</span></span><span class="sig-name descname"><span class="pre">Scheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">running</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_node_alloc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_total_wait_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_total_completed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_total_energy_J</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#Scheduler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Data-center job scheduler with multiple policies.</p>
+<p>Maintains a job queue, running set, and completed set.
+At each <code class="docutils literal notranslate"><span class="pre">step()</span></code>, the scheduler attempts to dispatch queued jobs
+onto available nodes according to the configured policy.</p>
+<p>The scheduler also tracks:
+- Cluster utilisation (node and GPU)
+- Queue wait times
+- Job throughput / makespan
+- Power-aware metrics (if power_budget is set)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig" title="compopt.scheduling.scheduler.SchedulerConfig"><em>SchedulerConfig</em></a>)</p></li>
+<li><p><strong>time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>queue</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a><em>]</em>)</p></li>
+<li><p><strong>running</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a><em>]</em>)</p></li>
+<li><p><strong>completed</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a><em>]</em>)</p></li>
+<li><p><strong>_node_alloc</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> | </em><em>None</em><em>]</em>)</p></li>
+<li><p><strong>_total_wait_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>_total_completed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>_total_energy_J</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.config">
+<span class="sig-name descname"><span class="pre">config</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig" title="compopt.scheduling.scheduler.SchedulerConfig"><span class="pre">SchedulerConfig</span></a></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.time_s">
+<span class="sig-name descname"><span class="pre">time_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.time_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.queue">
+<span class="sig-name descname"><span class="pre">queue</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><span class="pre">Job</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.queue" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.running">
+<span class="sig-name descname"><span class="pre">running</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><span class="pre">Job</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.running" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.completed">
+<span class="sig-name descname"><span class="pre">completed</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><span class="pre">Job</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.completed" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#Scheduler.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.reset" title="Link to this definition">¶</a></dt>
+<dd><p>Reset scheduler state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#Scheduler.submit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.submit" title="Link to this definition">¶</a></dt>
+<dd><p>Submit a job to the queue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>job</strong> (<a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.submit_batch">
+<span class="sig-name descname"><span class="pre">submit_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#Scheduler.submit_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.submit_batch" title="Link to this definition">¶</a></dt>
+<dd><p>Submit multiple jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.free_nodes">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">free_nodes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.free_nodes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.n_free_nodes">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">n_free_nodes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.n_free_nodes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.utilisation">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">utilisation</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.utilisation" title="Link to this definition">¶</a></dt>
+<dd><p>Node utilisation fraction [0, 1].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.gpu_utilisation">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">gpu_utilisation</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.gpu_utilisation" title="Link to this definition">¶</a></dt>
+<dd><p>Estimated GPU utilisation across running jobs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_temperatures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_powers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#Scheduler.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.step" title="Link to this definition">¶</a></dt>
+<dd><p>Advance scheduler by <em>dt</em> seconds.</p>
+<ol class="arabic simple">
+<li><p>Retire completed/failed jobs.</p></li>
+<li><p>Dispatch queued jobs according to policy.</p></li>
+<li><p>Update metrics.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_temperatures</strong> (<em>optional dict</em><em> of </em><em>node_id → T_hotspot</em><em> [</em><em>°C</em><em>]</em>) – (used by THERMAL_AWARE policy)</p></li>
+<li><p><strong>node_powers</strong> (<em>optional dict</em><em> of </em><em>node_id → power</em><em> [</em><em>W</em><em>]</em>) – (used for power-capped scheduling)</p></li>
+<li><p><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.get_metrics">
+<span class="sig-name descname"><span class="pre">get_metrics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#Scheduler.get_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.get_metrics" title="Link to this definition">¶</a></dt>
+<dd><p>Return scheduler metrics as a flat dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.get_observation">
+<span class="sig-name descname"><span class="pre">get_observation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/scheduling/scheduler.html#Scheduler.get_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.get_observation" title="Link to this definition">¶</a></dt>
+<dd><p>Compact scheduler observation for RL (shape: 8).</p>
+<p>[0] node_utilisation  [1] gpu_utilisation
+[2] queue_length      [3] n_running
+[4] avg_wait_time_s   [5] n_free_nodes
+[6] time_h            [7] queue_gpu_demand</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.scheduling.scheduler.Scheduler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">running</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_node_alloc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_total_wait_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_total_completed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_total_energy_J</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.scheduling.scheduler.Scheduler.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig" title="compopt.scheduling.scheduler.SchedulerConfig"><em>SchedulerConfig</em></a>)</p></li>
+<li><p><strong>time_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>queue</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a><em>]</em>)</p></li>
+<li><p><strong>running</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a><em>]</em>)</p></li>
+<li><p><strong>completed</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.scheduling.jobs.Job" title="compopt.scheduling.jobs.Job"><em>Job</em></a><em>]</em>)</p></li>
+<li><p><strong>_node_alloc</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> | </em><em>None</em><em>]</em>)</p></li>
+<li><p><strong>_total_wait_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>_total_completed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>_total_energy_J</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="rewards.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Rewards (<code class="docutils literal notranslate"><span class="pre">compopt.rewards</span></code>)</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="envs.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Environments (<code class="docutils literal notranslate"><span class="pre">compopt.envs</span></code>)</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, CompOpt Contributors &amp; Oak Ridge National Laboratory
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/compopt-benchmark/compopt" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Scheduling (<code class="docutils literal notranslate"><span class="pre">compopt.scheduling</span></code>)</a><ul>
+<li><a class="reference internal" href="#compopt-scheduling">compopt.scheduling</a><ul>
+<li><a class="reference internal" href="#sub-modules">Sub-modules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-compopt.scheduling.jobs">Jobs</a><ul>
+<li><a class="reference internal" href="#compopt-scheduling-jobs">compopt.scheduling.jobs</a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState"><code class="docutils literal notranslate"><span class="pre">JobState</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.QUEUED"><code class="docutils literal notranslate"><span class="pre">JobState.QUEUED</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.RUNNING"><code class="docutils literal notranslate"><span class="pre">JobState.RUNNING</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.COMPLETED"><code class="docutils literal notranslate"><span class="pre">JobState.COMPLETED</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.FAILED"><code class="docutils literal notranslate"><span class="pre">JobState.FAILED</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.CANCELLED"><code class="docutils literal notranslate"><span class="pre">JobState.CANCELLED</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.TIMEOUT"><code class="docutils literal notranslate"><span class="pre">JobState.TIMEOUT</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.NODE_FAIL"><code class="docutils literal notranslate"><span class="pre">JobState.NODE_FAIL</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobState.PREEMPTED"><code class="docutils literal notranslate"><span class="pre">JobState.PREEMPTED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType"><code class="docutils literal notranslate"><span class="pre">JobType</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType.TRAINING"><code class="docutils literal notranslate"><span class="pre">JobType.TRAINING</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType.INFERENCE"><code class="docutils literal notranslate"><span class="pre">JobType.INFERENCE</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType.FINE_TUNING"><code class="docutils literal notranslate"><span class="pre">JobType.FINE_TUNING</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType.DATA_PIPELINE"><code class="docutils literal notranslate"><span class="pre">JobType.DATA_PIPELINE</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType.HPC_SIMULATION"><code class="docutils literal notranslate"><span class="pre">JobType.HPC_SIMULATION</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType.BENCHMARK"><code class="docutils literal notranslate"><span class="pre">JobType.BENCHMARK</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.JobType.GENERIC"><code class="docutils literal notranslate"><span class="pre">JobType.GENERIC</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job"><code class="docutils literal notranslate"><span class="pre">Job</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.job_id"><code class="docutils literal notranslate"><span class="pre">Job.job_id</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.name"><code class="docutils literal notranslate"><span class="pre">Job.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.nodes_required"><code class="docutils literal notranslate"><span class="pre">Job.nodes_required</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.gpus_per_node"><code class="docutils literal notranslate"><span class="pre">Job.gpus_per_node</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.wall_time_s"><code class="docutils literal notranslate"><span class="pre">Job.wall_time_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.cpu_trace"><code class="docutils literal notranslate"><span class="pre">Job.cpu_trace</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.gpu_trace"><code class="docutils literal notranslate"><span class="pre">Job.gpu_trace</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.submit_time_s"><code class="docutils literal notranslate"><span class="pre">Job.submit_time_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.priority"><code class="docutils literal notranslate"><span class="pre">Job.priority</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.job_type"><code class="docutils literal notranslate"><span class="pre">Job.job_type</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.power_budget_W"><code class="docutils literal notranslate"><span class="pre">Job.power_budget_W</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.flops_required"><code class="docutils literal notranslate"><span class="pre">Job.flops_required</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.memory_GB"><code class="docutils literal notranslate"><span class="pre">Job.memory_GB</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.deadline_s"><code class="docutils literal notranslate"><span class="pre">Job.deadline_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.thermal_sensitive"><code class="docutils literal notranslate"><span class="pre">Job.thermal_sensitive</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.state"><code class="docutils literal notranslate"><span class="pre">Job.state</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.start_time_s"><code class="docutils literal notranslate"><span class="pre">Job.start_time_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.end_time_s"><code class="docutils literal notranslate"><span class="pre">Job.end_time_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.assigned_nodes"><code class="docutils literal notranslate"><span class="pre">Job.assigned_nodes</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.energy_consumed_J"><code class="docutils literal notranslate"><span class="pre">Job.energy_consumed_J</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.elapsed_s"><code class="docutils literal notranslate"><span class="pre">Job.elapsed_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.remaining_s"><code class="docutils literal notranslate"><span class="pre">Job.remaining_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.is_active"><code class="docutils literal notranslate"><span class="pre">Job.is_active</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.gpu_util_at"><code class="docutils literal notranslate"><span class="pre">Job.gpu_util_at()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.cpu_util_at"><code class="docutils literal notranslate"><span class="pre">Job.cpu_util_at()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.to_raps_dict"><code class="docutils literal notranslate"><span class="pre">Job.to_raps_dict()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.Job.__init__"><code class="docutils literal notranslate"><span class="pre">Job.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.generate_random_jobs"><code class="docutils literal notranslate"><span class="pre">generate_random_jobs()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.generate_ai_training_jobs"><code class="docutils literal notranslate"><span class="pre">generate_ai_training_jobs()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.jobs.generate_inference_jobs"><code class="docutils literal notranslate"><span class="pre">generate_inference_jobs()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-compopt.scheduling.scheduler">Scheduler</a><ul>
+<li><a class="reference internal" href="#compopt-scheduling-scheduler">compopt.scheduling.scheduler</a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy.FCFS"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.FCFS</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy.SJF"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.SJF</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy.PRIORITY"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.PRIORITY</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy.BACKFILL"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.BACKFILL</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy.THERMAL_AWARE"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.THERMAL_AWARE</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulingPolicy.RL_AGENT"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.RL_AGENT</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.total_nodes"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.total_nodes</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.gpus_per_node"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.gpus_per_node</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.policy"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.policy</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.trace_quanta_s"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.trace_quanta_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.power_budget_W"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.power_budget_W</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.max_nodes_per_job"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.max_nodes_per_job</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.preemption_enabled"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.preemption_enabled</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.SchedulerConfig.__init__"><code class="docutils literal notranslate"><span class="pre">SchedulerConfig.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler"><code class="docutils literal notranslate"><span class="pre">Scheduler</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.config"><code class="docutils literal notranslate"><span class="pre">Scheduler.config</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.time_s"><code class="docutils literal notranslate"><span class="pre">Scheduler.time_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.queue"><code class="docutils literal notranslate"><span class="pre">Scheduler.queue</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.running"><code class="docutils literal notranslate"><span class="pre">Scheduler.running</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.completed"><code class="docutils literal notranslate"><span class="pre">Scheduler.completed</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.reset"><code class="docutils literal notranslate"><span class="pre">Scheduler.reset()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.submit"><code class="docutils literal notranslate"><span class="pre">Scheduler.submit()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.submit_batch"><code class="docutils literal notranslate"><span class="pre">Scheduler.submit_batch()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.free_nodes"><code class="docutils literal notranslate"><span class="pre">Scheduler.free_nodes</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.n_free_nodes"><code class="docutils literal notranslate"><span class="pre">Scheduler.n_free_nodes</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.utilisation"><code class="docutils literal notranslate"><span class="pre">Scheduler.utilisation</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.gpu_utilisation"><code class="docutils literal notranslate"><span class="pre">Scheduler.gpu_utilisation</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.step"><code class="docutils literal notranslate"><span class="pre">Scheduler.step()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.get_metrics"><code class="docutils literal notranslate"><span class="pre">Scheduler.get_metrics()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.get_observation"><code class="docutils literal notranslate"><span class="pre">Scheduler.get_observation()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.scheduling.scheduler.Scheduler.__init__"><code class="docutils literal notranslate"><span class="pre">Scheduler.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>

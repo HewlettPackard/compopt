@@ -1,0 +1,1594 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Agents (compopt.agents)" href="agents.html"><link rel="prev" title="Scheduling (compopt.scheduling)" href="scheduling.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Rewards (compopt.rewards) - CompOpt</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a8c5d26f" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">CompOpt</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">CompOpt</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/physics.html">Physics Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/rewards.html">Reward System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/rl_training.html">RL Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/llm_agents.html">LLM Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/configuration.html">Configuration Presets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="physics.html">Physics (<code class="docutils literal notranslate"><span class="pre">compopt.physics</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envs.html">Environments (<code class="docutils literal notranslate"><span class="pre">compopt.envs</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheduling.html">Scheduling (<code class="docutils literal notranslate"><span class="pre">compopt.scheduling</span></code>)</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Rewards (<code class="docutils literal notranslate"><span class="pre">compopt.rewards</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html">Agents (<code class="docutils literal notranslate"><span class="pre">compopt.agents</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities (<code class="docutils literal notranslate"><span class="pre">compopt.utils</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configs.html">Configuration (<code class="docutils literal notranslate"><span class="pre">compopt.configs</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citation.html">Citation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/rewards.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-compopt.rewards">
+<span id="rewards-compopt-rewards"></span><h1>Rewards (<code class="docutils literal notranslate"><span class="pre">compopt.rewards</span></code>)<a class="headerlink" href="#module-compopt.rewards" title="Link to this heading">¶</a></h1>
+<section id="compopt-rewards">
+<h2>compopt.rewards<a class="headerlink" href="#compopt-rewards" title="Link to this heading">¶</a></h2>
+<p>Composable, modular reward functions for data-center RL environments.</p>
+<p>Reward components can be mixed and matched via <code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeReward</span></code>,
+or users can use one of the provided presets:</p>
+<ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">cooling_only_reward()</span></code> — rack/chip cooling</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">datacenter_reward()</span></code> — full DC thermal + energy + water + cost</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">scheduling_reward()</span></code> — job scheduling throughput + utilisation</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">joint_reward()</span></code> — combined scheduling + cooling</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">grid_aware_datacenter_reward()</span></code> — full DC with real-time grid tariff</p></li>
+</ul>
+</section>
+<section id="module-compopt.rewards.functions">
+<span id="reward-functions"></span><h2>Reward Functions<a class="headerlink" href="#module-compopt.rewards.functions" title="Link to this heading">¶</a></h2>
+<section id="compopt-rewards-functions">
+<h3>compopt.rewards.functions<a class="headerlink" href="#compopt-rewards-functions" title="Link to this heading">¶</a></h3>
+<p>Composable, modular reward functions for data-center RL environments.</p>
+<p>Each reward component is a callable that takes an <code class="docutils literal notranslate"><span class="pre">info</span></code> dict
+(produced by env.step) and returns a scalar reward contribution.</p>
+<p>Users can compose custom multi-objective rewards using <code class="docutils literal notranslate"><span class="pre">CompositeReward</span></code>.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.RewardComponent">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">RewardComponent</span></span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#RewardComponent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.RewardComponent" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base class for a single reward term.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.RewardComponent.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'base'</span></span><a class="headerlink" href="#compopt.rewards.functions.RewardComponent.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.RewardComponent.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#compopt.rewards.functions.RewardComponent.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.RewardComponent.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#RewardComponent.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.RewardComponent.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalPenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">ThermalPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'thermal_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#ThermalPenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.ThermalPenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Quadratic penalty for GPU hotspot exceeding target.</p>
+<p>r = -weight · max(0, T_hotspot - target)²</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>target_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalPenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'thermal_penalty'</span></span><a class="headerlink" href="#compopt.rewards.functions.ThermalPenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalPenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#compopt.rewards.functions.ThermalPenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalPenalty.target_C">
+<span class="sig-name descname"><span class="pre">target_C</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">80.0</span></span><a class="headerlink" href="#compopt.rewards.functions.ThermalPenalty.target_C" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalPenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#ThermalPenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.ThermalPenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalPenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'thermal_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.ThermalPenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>target_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalViolation">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">ThermalViolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'thermal_violation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">83.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#ThermalViolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.ThermalViolation" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Hard penalty for exceeding absolute thermal limit.</p>
+<p>r = -weight   if T_hotspot &gt; limit, else 0</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>limit_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalViolation.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'thermal_violation'</span></span><a class="headerlink" href="#compopt.rewards.functions.ThermalViolation.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalViolation.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></span><a class="headerlink" href="#compopt.rewards.functions.ThermalViolation.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalViolation.limit_C">
+<span class="sig-name descname"><span class="pre">limit_C</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">83.0</span></span><a class="headerlink" href="#compopt.rewards.functions.ThermalViolation.limit_C" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalViolation.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#ThermalViolation.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.ThermalViolation.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThermalViolation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'thermal_violation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">83.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.ThermalViolation.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>limit_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.HBMPenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">HBMPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hbm_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">95.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#HBMPenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.HBMPenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Penalty for HBM temperature exceeding limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>limit_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.HBMPenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'hbm_penalty'</span></span><a class="headerlink" href="#compopt.rewards.functions.HBMPenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.HBMPenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#compopt.rewards.functions.HBMPenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.HBMPenalty.limit_C">
+<span class="sig-name descname"><span class="pre">limit_C</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">95.0</span></span><a class="headerlink" href="#compopt.rewards.functions.HBMPenalty.limit_C" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.HBMPenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#HBMPenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.HBMPenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.HBMPenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hbm_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">95.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.HBMPenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>limit_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.EnergyPenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">EnergyPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'energy_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_ref_kW</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#EnergyPenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.EnergyPenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Penalty proportional to total power consumption.</p>
+<p>r = -weight · P_total / P_ref</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>P_ref_kW</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.EnergyPenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'energy_penalty'</span></span><a class="headerlink" href="#compopt.rewards.functions.EnergyPenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.EnergyPenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></span><a class="headerlink" href="#compopt.rewards.functions.EnergyPenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.EnergyPenalty.P_ref_kW">
+<span class="sig-name descname"><span class="pre">P_ref_kW</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></span><a class="headerlink" href="#compopt.rewards.functions.EnergyPenalty.P_ref_kW" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.EnergyPenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#EnergyPenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.EnergyPenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.EnergyPenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'energy_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_ref_kW</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.EnergyPenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>P_ref_kW</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CoolantFlowPenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">CoolantFlowPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flow_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_dot_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#CoolantFlowPenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.CoolantFlowPenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Penalty for excess coolant flow (pumping energy cost).</p>
+<p>r = -weight · (m_dot - m_dot_min)³    [cubic for realistic pump power]</p>
+<p>This makes high flow significantly more expensive, creating a real
+trade-off between thermal safety and energy cost that RL can optimize.</p>
+<p>For constrained RL, use weight ~0.01-0.1 (flow ranges 0.5-4.0 kg/s,
+so cubic ranges from 0 to 42.875, which is huge without scaling!)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>m_dot_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CoolantFlowPenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'flow_penalty'</span></span><a class="headerlink" href="#compopt.rewards.functions.CoolantFlowPenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CoolantFlowPenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></span><a class="headerlink" href="#compopt.rewards.functions.CoolantFlowPenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CoolantFlowPenalty.m_dot_min">
+<span class="sig-name descname"><span class="pre">m_dot_min</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#compopt.rewards.functions.CoolantFlowPenalty.m_dot_min" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CoolantFlowPenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#CoolantFlowPenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.CoolantFlowPenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CoolantFlowPenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flow_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_dot_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.CoolantFlowPenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>m_dot_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.PUEReward">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">PUEReward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pue_reward'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#PUEReward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.PUEReward" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Reward inversely proportional to PUE (closer to 1.0 is better).</p>
+<p>r = weight · (2.0 - PUE)    (positive when PUE &lt; 2)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.PUEReward.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pue_reward'</span></span><a class="headerlink" href="#compopt.rewards.functions.PUEReward.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.PUEReward.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#compopt.rewards.functions.PUEReward.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.PUEReward.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#PUEReward.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.PUEReward.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.PUEReward.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pue_reward'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.PUEReward.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CostPenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">CostPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cost_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#CostPenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.CostPenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Dollar-cost penalty per time step.</p>
+<p>r = -weight · cost_delta_$</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CostPenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cost_penalty'</span></span><a class="headerlink" href="#compopt.rewards.functions.CostPenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CostPenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10.0</span></span><a class="headerlink" href="#compopt.rewards.functions.CostPenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CostPenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#CostPenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.CostPenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CostPenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cost_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.CostPenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.GridElectricityCostPenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">GridElectricityCostPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grid_electricity_cost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_ref_kW</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#GridElectricityCostPenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.GridElectricityCostPenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Penalises electricity expenditure at the <em>current grid tariff price</em>.</p>
+<p>Unlike the static <code class="docutils literal notranslate"><span class="pre">CostPenalty</span></code>, this component is <em>time-aware</em>: it
+multiplies actual power consumption by the real-time grid price, so the
+agent learns to <strong>shift or reduce load during expensive peak hours</strong> and
+to exploit cheap off-peak / renewable-surplus windows.</p>
+<section id="formula">
+<h3>Formula<a class="headerlink" href="#formula" title="Link to this heading">¶</a></h3>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[r = -w \cdot P_{\text{total}} \;[\text{kW}]
+      \times p_{\text{grid}} \;[\$/{\text{kWh}}]
+      \times \Delta t \;[\text{h}]\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta t = dt / 3600\)</span> converts the step duration from
+seconds to hours, giving a cost increment in <strong>US dollars per step</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">type weight<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">param weight<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scalar multiplier. Default 50.0 makes grid-cost contributions
+comparable in magnitude to thermal penalties.</p>
+</dd>
+<dt class="field-odd">type weight<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">type dt_s<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">param dt_s<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Environment time-step in seconds (must match <code class="docutils literal notranslate"><span class="pre">DataCenterEnv.dt</span></code>).</p>
+</dd>
+<dt class="field-even">type dt_s<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">type P_ref_kW<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">param P_ref_kW<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference power used for normalisation (default 100 kW).  The
+per-step cost is divided by <code class="docutils literal notranslate"><span class="pre">P_ref_kW</span></code> to keep reward magnitudes
+scale-invariant across cluster sizes.</p>
+</dd>
+<dt class="field-odd">type P_ref_kW<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">param Info keys consumed<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+<dt class="field-odd">param ——————<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">param - <code class="docutils literal notranslate"><span class="pre">total_power_kW</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+<dt class="field-odd">type - <code class="docutils literal notranslate"><span class="pre">total_power_kW</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>total facility power [kW]</p>
+</dd>
+<dt class="field-even">param - <code class="docutils literal notranslate"><span class="pre">grid_price_per_kWh</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">DataCenterEnv</span></code> when <code class="docutils literal notranslate"><span class="pre">grid_electricity</span></code> is enabled)</p>
+</dd>
+<dt class="field-odd">type - <code class="docutils literal notranslate"><span class="pre">grid_price_per_kWh</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>current tariff price [$/kWh] (set by</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">comp</span> <span class="o">=</span> <span class="n">GridElectricityCostPenalty</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">dt_s</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;total_power_kW&quot;</span><span class="p">:</span> <span class="mf">120.0</span><span class="p">,</span> <span class="s2">&quot;grid_price_per_kWh&quot;</span><span class="p">:</span> <span class="mf">0.22</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">comp</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+<span class="go">-0.33   # −50 × (120/100) × 0.22 × (5/3600)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.GridElectricityCostPenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'grid_electricity_cost'</span></span><a class="headerlink" href="#compopt.rewards.functions.GridElectricityCostPenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.GridElectricityCostPenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">50.0</span></span><a class="headerlink" href="#compopt.rewards.functions.GridElectricityCostPenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.GridElectricityCostPenalty.dt_s">
+<span class="sig-name descname"><span class="pre">dt_s</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5.0</span></span><a class="headerlink" href="#compopt.rewards.functions.GridElectricityCostPenalty.dt_s" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.GridElectricityCostPenalty.P_ref_kW">
+<span class="sig-name descname"><span class="pre">P_ref_kW</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></span><a class="headerlink" href="#compopt.rewards.functions.GridElectricityCostPenalty.P_ref_kW" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.GridElectricityCostPenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#GridElectricityCostPenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.GridElectricityCostPenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.GridElectricityCostPenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grid_electricity_cost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_ref_kW</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.GridElectricityCostPenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>dt_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>P_ref_kW</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>dt_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>P_ref_kW</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WaterPenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">WaterPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'water_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#WaterPenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.WaterPenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Penalty for water consumption per time step.</p>
+<p>r = -weight · water_L_per_step / ref_L</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>ref_L</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WaterPenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'water_penalty'</span></span><a class="headerlink" href="#compopt.rewards.functions.WaterPenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WaterPenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#compopt.rewards.functions.WaterPenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WaterPenalty.ref_L">
+<span class="sig-name descname"><span class="pre">ref_L</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10.0</span></span><a class="headerlink" href="#compopt.rewards.functions.WaterPenalty.ref_L" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WaterPenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#WaterPenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.WaterPenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WaterPenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'water_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.WaterPenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>ref_L</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WUEReward">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">WUEReward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'wue_reward'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#WUEReward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.WUEReward" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Reward for low Water Usage Effectiveness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WUEReward.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'wue_reward'</span></span><a class="headerlink" href="#compopt.rewards.functions.WUEReward.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WUEReward.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#compopt.rewards.functions.WUEReward.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WUEReward.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#WUEReward.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.WUEReward.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.WUEReward.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'wue_reward'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.WUEReward.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThroughputReward">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">ThroughputReward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'throughput'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#ThroughputReward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.ThroughputReward" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Reward for job completions in this step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThroughputReward.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'throughput'</span></span><a class="headerlink" href="#compopt.rewards.functions.ThroughputReward.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThroughputReward.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#compopt.rewards.functions.ThroughputReward.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThroughputReward.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#ThroughputReward.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.ThroughputReward.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.ThroughputReward.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'throughput'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.ThroughputReward.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.QueuePenalty">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">QueuePenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'queue_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#QueuePenalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.QueuePenalty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Penalty for long queues (waiting jobs).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.QueuePenalty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'queue_penalty'</span></span><a class="headerlink" href="#compopt.rewards.functions.QueuePenalty.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.QueuePenalty.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></span><a class="headerlink" href="#compopt.rewards.functions.QueuePenalty.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.QueuePenalty.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#QueuePenalty.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.QueuePenalty.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.QueuePenalty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'queue_penalty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.QueuePenalty.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.UtilisationReward">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">UtilisationReward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utilisation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#UtilisationReward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.UtilisationReward" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Reward for high cluster utilisation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.UtilisationReward.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'utilisation'</span></span><a class="headerlink" href="#compopt.rewards.functions.UtilisationReward.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.UtilisationReward.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#compopt.rewards.functions.UtilisationReward.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.UtilisationReward.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#UtilisationReward.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.UtilisationReward.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.UtilisationReward.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utilisation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.UtilisationReward.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.SLAViolation">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">SLAViolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla_violation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#SLAViolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.SLAViolation" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardComponent</span></code></a></p>
+<p>Penalty for jobs exceeding their deadline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.SLAViolation.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sla_violation'</span></span><a class="headerlink" href="#compopt.rewards.functions.SLAViolation.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="compopt.rewards.functions.SLAViolation.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">50.0</span></span><a class="headerlink" href="#compopt.rewards.functions.SLAViolation.weight" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.SLAViolation.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#SLAViolation.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.SLAViolation.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.SLAViolation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla_violation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compopt.rewards.functions.SLAViolation.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CompositeReward">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">CompositeReward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#CompositeReward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.CompositeReward" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Multi-objective reward that sums weighted reward components.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reward_fn</span> <span class="o">=</span> <span class="n">CompositeReward</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="n">ThermalPenalty</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">target_C</span><span class="o">=</span><span class="mf">80.0</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">CoolantFlowPenalty</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">EnergyPenalty</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="mf">0.005</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">WaterPenalty</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total</span><span class="p">,</span> <span class="n">breakdown</span> <span class="o">=</span> <span class="n">reward_fn</span><span class="p">(</span><span class="n">info_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>components</strong> (<em>List</em><em>[</em><a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><em>RewardComponent</em></a><em>]</em>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CompositeReward.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#CompositeReward.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.CompositeReward.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>components</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference internal" href="#compopt.rewards.functions.RewardComponent" title="compopt.rewards.functions.RewardComponent"><em>RewardComponent</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="compopt.rewards.functions.CompositeReward.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#CompositeReward.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.CompositeReward.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Return (total_reward, breakdown_dict).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>info</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.rewards.functions.cooling_only_reward">
+<span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">cooling_only_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#cooling_only_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.cooling_only_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Reward for rack/chip cooling control with energy-performance trade-off.</p>
+<p>Designed to make RL valuable:
+- Strong HBM penalty (weight=10.0) for safety
+- Mild flow penalty (weight=0.01, cubic) for realistic pump costs
+- Creates trade-off: adaptive control can save energy vs always-max-flow</p>
+<p>Optimal policy should:
+- Use high flow during high workload periods
+- Reduce flow during low workload to save energy
+- React to temperature trends before violations occur</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#compopt.rewards.functions.CompositeReward" title="compopt.rewards.functions.CompositeReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeReward</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>target_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.rewards.functions.constrained_cooling_reward">
+<span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">constrained_cooling_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#constrained_cooling_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.constrained_cooling_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Balanced cooling reward that prevents exploits.</p>
+<p>Uses ORIGINAL reward structure (what baselines were evaluated on):
+- Thermal penalties for GPU hotspot
+- HBM penalty with 90°C limit (85°C too strict, 95°C too loose)
+- Flow penalty weight=0.1 (balanced compromise)</p>
+<p>This matches what the adaptive baseline was scored against,
+so RL results will be comparable. HBM peaks at 90.3°C with max cooling,
+so agent must learn to keep it just under 90°C.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#compopt.rewards.functions.CompositeReward" title="compopt.rewards.functions.CompositeReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeReward</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>target_C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.rewards.functions.datacenter_reward">
+<span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">datacenter_reward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#datacenter_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.datacenter_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Full data-center reward with thermal + energy + water + cost.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#compopt.rewards.functions.CompositeReward" title="compopt.rewards.functions.CompositeReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeReward</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.rewards.functions.scheduling_reward">
+<span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">scheduling_reward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#scheduling_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.scheduling_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Reward for job scheduling only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#compopt.rewards.functions.CompositeReward" title="compopt.rewards.functions.CompositeReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeReward</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.rewards.functions.joint_reward">
+<span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">joint_reward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#joint_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.joint_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Joint scheduling + cooling + cost reward.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#compopt.rewards.functions.CompositeReward" title="compopt.rewards.functions.CompositeReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeReward</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="compopt.rewards.functions.grid_aware_datacenter_reward">
+<span class="sig-prename descclassname"><span class="pre">compopt.rewards.functions.</span></span><span class="sig-name descname"><span class="pre">grid_aware_datacenter_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compopt/rewards/functions.html#grid_aware_datacenter_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compopt.rewards.functions.grid_aware_datacenter_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Data-centre reward that penalises <strong>real-time grid electricity costs</strong>.</p>
+<p>This preset is designed for use with <code class="docutils literal notranslate"><span class="pre">DataCenterEnv(grid_electricity=True)</span></code>.
+The agent is incentivised to:</p>
+<ul class="simple">
+<li><p>Keep GPUs below thermal limits (safety)</p></li>
+<li><p>Minimise total energy consumption (efficiency)</p></li>
+<li><p><strong>Shift expensive compute away from on-peak tariff windows</strong></p></li>
+<li><p><strong>Exploit off-peak / renewable-surplus price dips</strong></p></li>
+</ul>
+<p>Compared to <code class="docutils literal notranslate"><span class="pre">datacenter_reward()</span></code>:</p>
+<ul class="simple">
+<li><p>Replaces the static <code class="docutils literal notranslate"><span class="pre">CostPenalty</span></code> with <code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty</span></code>
+(same physical energy, but cost is modulated by the live tariff price).</p></li>
+<li><p>Retains <code class="docutils literal notranslate"><span class="pre">EnergyPenalty</span></code> as a baseline incentive to reduce absolute
+power, independent of price.</p></li>
+<li><p>Slightly reduces <code class="docutils literal notranslate"><span class="pre">WaterPenalty</span></code> weight to leave room for the price
+signal to dominate.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Environment time-step in seconds. <strong>Must match</strong> the <code class="docutils literal notranslate"><span class="pre">dt</span></code> passed to
+<code class="docutils literal notranslate"><span class="pre">DataCenterEnv</span></code> so that per-step energy is computed correctly.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#compopt.rewards.functions.CompositeReward" title="compopt.rewards.functions.CompositeReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeReward</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">compopt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">compopt.rewards</span><span class="w"> </span><span class="kn">import</span> <span class="n">grid_aware_datacenter_reward</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;DataCenter-v0&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">grid_electricity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">reward_fn</span><span class="o">=</span><span class="n">grid_aware_datacenter_reward</span><span class="p">(</span><span class="n">dt_s</span><span class="o">=</span><span class="mf">5.0</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="agents.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Agents (<code class="docutils literal notranslate"><span class="pre">compopt.agents</span></code>)</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="scheduling.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Scheduling (<code class="docutils literal notranslate"><span class="pre">compopt.scheduling</span></code>)</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, CompOpt Contributors &amp; Oak Ridge National Laboratory
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/compopt-benchmark/compopt" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Rewards (<code class="docutils literal notranslate"><span class="pre">compopt.rewards</span></code>)</a><ul>
+<li><a class="reference internal" href="#compopt-rewards">compopt.rewards</a></li>
+<li><a class="reference internal" href="#module-compopt.rewards.functions">Reward Functions</a><ul>
+<li><a class="reference internal" href="#compopt-rewards-functions">compopt.rewards.functions</a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.RewardComponent"><code class="docutils literal notranslate"><span class="pre">RewardComponent</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.RewardComponent.name"><code class="docutils literal notranslate"><span class="pre">RewardComponent.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.RewardComponent.weight"><code class="docutils literal notranslate"><span class="pre">RewardComponent.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.RewardComponent.__call__"><code class="docutils literal notranslate"><span class="pre">RewardComponent.__call__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalPenalty"><code class="docutils literal notranslate"><span class="pre">ThermalPenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalPenalty.name"><code class="docutils literal notranslate"><span class="pre">ThermalPenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalPenalty.weight"><code class="docutils literal notranslate"><span class="pre">ThermalPenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalPenalty.target_C"><code class="docutils literal notranslate"><span class="pre">ThermalPenalty.target_C</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalPenalty.__call__"><code class="docutils literal notranslate"><span class="pre">ThermalPenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalPenalty.__init__"><code class="docutils literal notranslate"><span class="pre">ThermalPenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalViolation"><code class="docutils literal notranslate"><span class="pre">ThermalViolation</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalViolation.name"><code class="docutils literal notranslate"><span class="pre">ThermalViolation.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalViolation.weight"><code class="docutils literal notranslate"><span class="pre">ThermalViolation.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalViolation.limit_C"><code class="docutils literal notranslate"><span class="pre">ThermalViolation.limit_C</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalViolation.__call__"><code class="docutils literal notranslate"><span class="pre">ThermalViolation.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThermalViolation.__init__"><code class="docutils literal notranslate"><span class="pre">ThermalViolation.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.HBMPenalty"><code class="docutils literal notranslate"><span class="pre">HBMPenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.HBMPenalty.name"><code class="docutils literal notranslate"><span class="pre">HBMPenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.HBMPenalty.weight"><code class="docutils literal notranslate"><span class="pre">HBMPenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.HBMPenalty.limit_C"><code class="docutils literal notranslate"><span class="pre">HBMPenalty.limit_C</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.HBMPenalty.__call__"><code class="docutils literal notranslate"><span class="pre">HBMPenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.HBMPenalty.__init__"><code class="docutils literal notranslate"><span class="pre">HBMPenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.EnergyPenalty"><code class="docutils literal notranslate"><span class="pre">EnergyPenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.EnergyPenalty.name"><code class="docutils literal notranslate"><span class="pre">EnergyPenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.EnergyPenalty.weight"><code class="docutils literal notranslate"><span class="pre">EnergyPenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.EnergyPenalty.P_ref_kW"><code class="docutils literal notranslate"><span class="pre">EnergyPenalty.P_ref_kW</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.EnergyPenalty.__call__"><code class="docutils literal notranslate"><span class="pre">EnergyPenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.EnergyPenalty.__init__"><code class="docutils literal notranslate"><span class="pre">EnergyPenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CoolantFlowPenalty"><code class="docutils literal notranslate"><span class="pre">CoolantFlowPenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.CoolantFlowPenalty.name"><code class="docutils literal notranslate"><span class="pre">CoolantFlowPenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CoolantFlowPenalty.weight"><code class="docutils literal notranslate"><span class="pre">CoolantFlowPenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CoolantFlowPenalty.m_dot_min"><code class="docutils literal notranslate"><span class="pre">CoolantFlowPenalty.m_dot_min</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CoolantFlowPenalty.__call__"><code class="docutils literal notranslate"><span class="pre">CoolantFlowPenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CoolantFlowPenalty.__init__"><code class="docutils literal notranslate"><span class="pre">CoolantFlowPenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.PUEReward"><code class="docutils literal notranslate"><span class="pre">PUEReward</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.PUEReward.name"><code class="docutils literal notranslate"><span class="pre">PUEReward.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.PUEReward.weight"><code class="docutils literal notranslate"><span class="pre">PUEReward.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.PUEReward.__call__"><code class="docutils literal notranslate"><span class="pre">PUEReward.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.PUEReward.__init__"><code class="docutils literal notranslate"><span class="pre">PUEReward.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CostPenalty"><code class="docutils literal notranslate"><span class="pre">CostPenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.CostPenalty.name"><code class="docutils literal notranslate"><span class="pre">CostPenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CostPenalty.weight"><code class="docutils literal notranslate"><span class="pre">CostPenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CostPenalty.__call__"><code class="docutils literal notranslate"><span class="pre">CostPenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CostPenalty.__init__"><code class="docutils literal notranslate"><span class="pre">CostPenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.GridElectricityCostPenalty"><code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.GridElectricityCostPenalty.name"><code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.GridElectricityCostPenalty.weight"><code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.GridElectricityCostPenalty.dt_s"><code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty.dt_s</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.GridElectricityCostPenalty.P_ref_kW"><code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty.P_ref_kW</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.GridElectricityCostPenalty.__call__"><code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.GridElectricityCostPenalty.__init__"><code class="docutils literal notranslate"><span class="pre">GridElectricityCostPenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WaterPenalty"><code class="docutils literal notranslate"><span class="pre">WaterPenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.WaterPenalty.name"><code class="docutils literal notranslate"><span class="pre">WaterPenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WaterPenalty.weight"><code class="docutils literal notranslate"><span class="pre">WaterPenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WaterPenalty.ref_L"><code class="docutils literal notranslate"><span class="pre">WaterPenalty.ref_L</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WaterPenalty.__call__"><code class="docutils literal notranslate"><span class="pre">WaterPenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WaterPenalty.__init__"><code class="docutils literal notranslate"><span class="pre">WaterPenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WUEReward"><code class="docutils literal notranslate"><span class="pre">WUEReward</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.WUEReward.name"><code class="docutils literal notranslate"><span class="pre">WUEReward.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WUEReward.weight"><code class="docutils literal notranslate"><span class="pre">WUEReward.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WUEReward.__call__"><code class="docutils literal notranslate"><span class="pre">WUEReward.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.WUEReward.__init__"><code class="docutils literal notranslate"><span class="pre">WUEReward.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThroughputReward"><code class="docutils literal notranslate"><span class="pre">ThroughputReward</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThroughputReward.name"><code class="docutils literal notranslate"><span class="pre">ThroughputReward.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThroughputReward.weight"><code class="docutils literal notranslate"><span class="pre">ThroughputReward.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThroughputReward.__call__"><code class="docutils literal notranslate"><span class="pre">ThroughputReward.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.ThroughputReward.__init__"><code class="docutils literal notranslate"><span class="pre">ThroughputReward.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.QueuePenalty"><code class="docutils literal notranslate"><span class="pre">QueuePenalty</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.QueuePenalty.name"><code class="docutils literal notranslate"><span class="pre">QueuePenalty.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.QueuePenalty.weight"><code class="docutils literal notranslate"><span class="pre">QueuePenalty.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.QueuePenalty.__call__"><code class="docutils literal notranslate"><span class="pre">QueuePenalty.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.QueuePenalty.__init__"><code class="docutils literal notranslate"><span class="pre">QueuePenalty.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.UtilisationReward"><code class="docutils literal notranslate"><span class="pre">UtilisationReward</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.UtilisationReward.name"><code class="docutils literal notranslate"><span class="pre">UtilisationReward.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.UtilisationReward.weight"><code class="docutils literal notranslate"><span class="pre">UtilisationReward.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.UtilisationReward.__call__"><code class="docutils literal notranslate"><span class="pre">UtilisationReward.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.UtilisationReward.__init__"><code class="docutils literal notranslate"><span class="pre">UtilisationReward.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.SLAViolation"><code class="docutils literal notranslate"><span class="pre">SLAViolation</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.SLAViolation.name"><code class="docutils literal notranslate"><span class="pre">SLAViolation.name</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.SLAViolation.weight"><code class="docutils literal notranslate"><span class="pre">SLAViolation.weight</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.SLAViolation.__call__"><code class="docutils literal notranslate"><span class="pre">SLAViolation.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.SLAViolation.__init__"><code class="docutils literal notranslate"><span class="pre">SLAViolation.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CompositeReward"><code class="docutils literal notranslate"><span class="pre">CompositeReward</span></code></a><ul>
+<li><a class="reference internal" href="#compopt.rewards.functions.CompositeReward.__init__"><code class="docutils literal notranslate"><span class="pre">CompositeReward.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.CompositeReward.__call__"><code class="docutils literal notranslate"><span class="pre">CompositeReward.__call__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compopt.rewards.functions.cooling_only_reward"><code class="docutils literal notranslate"><span class="pre">cooling_only_reward()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.constrained_cooling_reward"><code class="docutils literal notranslate"><span class="pre">constrained_cooling_reward()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.datacenter_reward"><code class="docutils literal notranslate"><span class="pre">datacenter_reward()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.scheduling_reward"><code class="docutils literal notranslate"><span class="pre">scheduling_reward()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.joint_reward"><code class="docutils literal notranslate"><span class="pre">joint_reward()</span></code></a></li>
+<li><a class="reference internal" href="#compopt.rewards.functions.grid_aware_datacenter_reward"><code class="docutils literal notranslate"><span class="pre">grid_aware_datacenter_reward()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

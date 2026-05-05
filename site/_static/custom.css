@@ -1,0 +1,18 @@
+/* CompOpt documentation custom styles */
+
+/* Slightly wider content area for code blocks */
+.content {
+    max-width: 52rem;
+}
+
+/* Style inline code references */
+code.literal {
+    font-size: 0.9em;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+
+/* Math block spacing */
+div.math {
+    margin: 1.2em 0;
+}

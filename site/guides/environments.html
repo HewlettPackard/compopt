@@ -1,0 +1,742 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Reward System" href="rewards.html"><link rel="prev" title="Physics Engine" href="physics.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Environments - CompOpt</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a8c5d26f" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">CompOpt</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">CompOpt</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physics.html">Physics Engine</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rewards.html">Reward System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rl_training.html">RL Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm_agents.html">LLM Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Presets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/physics.html">Physics (<code class="docutils literal notranslate"><span class="pre">compopt.physics</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/envs.html">Environments (<code class="docutils literal notranslate"><span class="pre">compopt.envs</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/scheduling.html">Scheduling (<code class="docutils literal notranslate"><span class="pre">compopt.scheduling</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rewards.html">Rewards (<code class="docutils literal notranslate"><span class="pre">compopt.rewards</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/agents.html">Agents (<code class="docutils literal notranslate"><span class="pre">compopt.agents</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/utils.html">Utilities (<code class="docutils literal notranslate"><span class="pre">compopt.utils</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/configs.html">Configuration (<code class="docutils literal notranslate"><span class="pre">compopt.configs</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citation.html">Citation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/guides/environments.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="environments">
+<h1>Environments<a class="headerlink" href="#environments" title="Link to this heading">¶</a></h1>
+<p>CompOpt provides six Gymnasium-compatible environments at four difficulty
+levels.  All follow the standard <code class="docutils literal notranslate"><span class="pre">gymnasium.Env</span></code> API.</p>
+<section id="environment-hierarchy">
+<h2>Environment Hierarchy<a class="headerlink" href="#environment-hierarchy" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Easy:    ChipThermal-v0     →  Single GPU chip
+Medium:  RackCooling-v0     →  Rack of 4 GPUs
+         Scheduling-v0      →  Job scheduler (no thermal coupling)
+Hard:    DataCenter-v0      →  Full DC: racks + CDU + cooling tower
+Expert:  JointDC-v0         →  Joint scheduling + cooling (Dict)
+         JointDCFlat-v0     →  Joint scheduling + cooling (Flat)
+</pre></div>
+</div>
+</section>
+<section id="chipthermal-v0-easy">
+<h2>ChipThermal-v0 (Easy)<a class="headerlink" href="#chipthermal-v0-easy" title="Link to this heading">¶</a></h2>
+<p>Control coolant flow to a single GPU die.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Action</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Box(1,)</span></code> in [0, 1] — normalised coolant mass-flow rate</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Observation</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Box(7,)</span></code> — [T_mean, T_hotspot, T_hbm, T_vrm, T_in, T_out, P]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reward</strong></p></td>
+<td><p>Quadratic thermal penalty + flow penalty</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Episode</strong></p></td>
+<td><p>600 s (default), truncation only</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">compopt</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;ChipThermal-v0&quot;</span><span class="p">,</span> <span class="n">gpu_preset</span><span class="o">=</span><span class="s2">&quot;B200&quot;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="configurable-parameters">
+<h3>Configurable Parameters<a class="headerlink" href="#configurable-parameters" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gpu_preset</span></code> — <code class="docutils literal notranslate"><span class="pre">&quot;H100_SXM&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;B200&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">workload</span></code> — <code class="docutils literal notranslate"><span class="pre">&quot;sinusoidal&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;step&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;burst&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;stochastic&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dt</span></code> — timestep [s]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">episode_length_s</span></code> — episode duration [s]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m_dot_min</span></code>, <code class="docutils literal notranslate"><span class="pre">m_dot_max</span></code> — flow rate bounds [kg/s]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target_hotspot_C</span></code> — thermal target [°C]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reward_fn</span></code> — custom <code class="docutils literal notranslate"><span class="pre">CompositeReward</span></code> instance</p></li>
+</ul>
+</section>
+</section>
+<section id="rackcooling-v0-medium">
+<h2>RackCooling-v0 (Medium)<a class="headerlink" href="#rackcooling-v0-medium" title="Link to this heading">¶</a></h2>
+<p>Control rack-level coolant flow for a rack of multiple GPUs.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Action</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Box(1,)</span></code> in [0, 1] — normalised rack coolant flow</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Observation</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Box(10,)</span></code> — GPU0 sensors + rack telemetry</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reward</strong></p></td>
+<td><p>Thermal penalty + flow penalty</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Episode</strong></p></td>
+<td><p>1800 s (default)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;RackCooling-v0&quot;</span><span class="p">,</span> <span class="n">n_servers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">gpus_per_server</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="scheduling-v0-medium">
+<h2>Scheduling-v0 (Medium)<a class="headerlink" href="#scheduling-v0-medium" title="Link to this heading">¶</a></h2>
+<p>Discrete job scheduling on a cluster (no thermal coupling).</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Action</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Discrete(11)</span></code> — queue index to prioritise (0 = no-op)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Observation</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Box(12,)</span></code> — scheduler metrics + queue summary</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reward</strong></p></td>
+<td><p>Throughput + utilisation - queue penalty - SLA violations</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Episode</strong></p></td>
+<td><p>86400 s (24 h) or until all jobs complete</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Scheduling-v0&quot;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">60.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="datacenter-v0-hard">
+<h2>DataCenter-v0 (Hard)<a class="headerlink" href="#datacenter-v0-hard" title="Link to this heading">¶</a></h2>
+<p>Multi-dimensional cooling control for a full data center.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Action</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Box(3,)</span></code> — [rack_flow, cdu_pump, tower_fan] normalised</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Observation</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Box(16,)</span></code> — thermal + energy + cost + water state</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reward</strong></p></td>
+<td><p>Thermal + energy + PUE + water + cost</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Episode</strong></p></td>
+<td><p>3600 s (default)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="observation-vector-16-elements">
+<h3>Observation Vector (16 elements)<a class="headerlink" href="#observation-vector-16-elements" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Index</p></th>
+<th class="head"><p>Field</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td><p>T_hotspot_max</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td><p>T_hotspot_mean</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td><p>rack_coolant_in</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td><p>rack_coolant_out</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td><p>CDU_hot_T</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td><p>CDU_cold_T</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td><p>tower_basin_T</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>ambient_T</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td><p>IT_power</p></td>
+<td><p>kW</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>9</p></td>
+<td><p>cooling_power</p></td>
+<td><p>kW</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>10</p></td>
+<td><p>PUE</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>11</p></td>
+<td><p>WUE</p></td>
+<td><p>L/kWh</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>12</p></td>
+<td><p>total_cost</p></td>
+<td><p>$</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>13</p></td>
+<td><p>water_used</p></td>
+<td><p>L</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>n_active_nodes</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>15</p></td>
+<td><p>time</p></td>
+<td><p>h</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">grid_electricity=True</span></code>, a 17th element is appended:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Index</p></th>
+<th class="head"><p>Field</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>16</p></td>
+<td><p>grid_price</p></td>
+<td><p>$/kWh</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;DataCenter-v0&quot;</span><span class="p">,</span> <span class="n">n_racks</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">T_ambient_C</span><span class="o">=</span><span class="mf">30.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="grid-electricity-mode">
+<h3>Grid Electricity Mode<a class="headerlink" href="#grid-electricity-mode" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DataCenter-v0</span></code> can be configured to simulate realistic time-varying grid
+electricity prices, enabling RL agents to learn <strong>load-shifting</strong> and
+<strong>demand-response</strong> strategies.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">compopt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">compopt.rewards</span><span class="w"> </span><span class="kn">import</span> <span class="n">grid_aware_datacenter_reward</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span>
+    <span class="s2">&quot;DataCenter-v0&quot;</span><span class="p">,</span>
+    <span class="n">grid_electricity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># enable grid price model</span>
+    <span class="n">grid_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>                   <span class="c1"># reproducible episodes</span>
+    <span class="n">dt</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+    <span class="n">reward_fn</span><span class="o">=</span><span class="n">grid_aware_datacenter_reward</span><span class="p">(</span><span class="n">dt_s</span><span class="o">=</span><span class="mf">5.0</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">obs</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="c1"># obs.shape == (17,)  ← 16 thermal/energy + grid_price</span>
+</pre></div>
+</div>
+<p>The grid price is exposed in the <code class="docutils literal notranslate"><span class="pre">info</span></code> dict at every step:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grid_price_per_kWh</span></code></p></td>
+<td><p>Current tariff price [$/kWh]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">grid_electricity_cost_dollar</span></code></p></td>
+<td><p>Electricity spend this step [$]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grid_hour_of_day</span></code></p></td>
+<td><p>Simulated hour of day [0–24)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">grid_day_of_week</span></code></p></td>
+<td><p>Day of week (0=Mon … 6=Sun)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grid_cpp_active</span></code></p></td>
+<td><p>1.0 if a Critical Peak Pricing event</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="tariff-presets">
+<h4>Tariff Presets<a class="headerlink" href="#tariff-presets" title="Link to this heading">¶</a></h4>
+<p>Three utility tariff profiles are built in:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">compopt.physics.electricity</span><span class="w"> </span><span class="kn">import</span> <span class="n">TOUTariff</span>
+
+<span class="c1"># PG&amp;E E-19 (California commercial)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;DataCenter-v0&quot;</span><span class="p">,</span> <span class="n">grid_electricity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">grid_tariff</span><span class="o">=</span><span class="n">TOUTariff</span><span class="o">.</span><span class="n">pge_e19</span><span class="p">())</span>
+
+<span class="c1"># ERCOT real-time market (Texas, lower base rate, higher peaks)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;DataCenter-v0&quot;</span><span class="p">,</span> <span class="n">grid_electricity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">grid_tariff</span><span class="o">=</span><span class="n">TOUTariff</span><span class="o">.</span><span class="n">ercot_rtm</span><span class="p">())</span>
+
+<span class="c1"># SDG&amp;E TOU-8 (San Diego, highest baseline)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;DataCenter-v0&quot;</span><span class="p">,</span> <span class="n">grid_electricity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">grid_tariff</span><span class="o">=</span><span class="n">TOUTariff</span><span class="o">.</span><span class="n">sdge_tou8</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="price-model-details">
+<h4>Price Model Details<a class="headerlink" href="#price-model-details" title="Link to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">GridElectricityPriceModel</span></code> combines several realistic price signals:</p>
+<ul class="simple">
+<li><p><strong>Time-of-Use tiers</strong> — off-peak (~<span class="math notranslate nohighlight">\(0.065/kWh nights/weekends),
+mid-peak (~\)</span>0.115/kWh shoulders), on-peak (~$0.22/kWh weekday afternoons)</p></li>
+<li><p><strong>Seasonal multiplier</strong> — summer prices ~25 % higher than spring;
+secondary winter bump due to heating demand</p></li>
+<li><p><strong>Ornstein–Uhlenbeck noise</strong> — mean-reverting real-time price fluctuations
+(±15 %), mimicking wholesale spot-market behaviour</p></li>
+<li><p><strong>Renewable surplus credit</strong> — on 25 % of days a solar mid-day dip lowers
+prices by up to $0.06/kWh (California duck-curve effect)</p></li>
+<li><p><strong>Critical Peak Pricing (CPP)</strong> — rare events (5 % of episodes) where
+on-peak prices spike to <span class="math notranslate nohighlight">\(0.52–\)</span>0.75/kWh</p></li>
+</ul>
+</section>
+<section id="example-inspecting-price-variation">
+<h4>Example: Inspecting price variation<a class="headerlink" href="#example-inspecting-price-variation" title="Link to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">compopt.physics.electricity</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridElectricityPriceModel</span><span class="p">,</span> <span class="n">TOUTariff</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">GridElectricityPriceModel</span><span class="p">(</span><span class="n">tariff</span><span class="o">=</span><span class="n">TOUTariff</span><span class="o">.</span><span class="n">pge_e19</span><span class="p">(),</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">start_hour</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">day_of_year</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>  <span class="c1"># midnight, mid-summer</span>
+
+<span class="n">prices</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">288</span><span class="p">):</span>          <span class="c1"># 24 h at 5-minute resolution</span>
+    <span class="n">prices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">dt_s</span><span class="o">=</span><span class="mf">300.0</span><span class="p">))</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">60</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">288</span><span class="p">)],</span> <span class="n">prices</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Hour of day&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$/kWh&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Grid price (PG&amp;E E-19)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="jointdc-v0-jointdcflat-v0-expert">
+<h2>JointDC-v0 / JointDCFlat-v0 (Expert)<a class="headerlink" href="#jointdc-v0-jointdcflat-v0-expert" title="Link to this heading">¶</a></h2>
+<p>Joint scheduling + cooling optimisation — the most challenging benchmark.</p>
+<p><strong>JointDC-v0</strong> uses Dict action/observation spaces:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">action[&quot;cooling&quot;]</span></code> : <code class="docutils literal notranslate"><span class="pre">Box(3,)</span></code> — cooling actuators</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">action[&quot;scheduling&quot;]</span></code> : <code class="docutils literal notranslate"><span class="pre">Discrete(11)</span></code> — queue prioritisation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">obs[&quot;thermal&quot;]</span></code> : <code class="docutils literal notranslate"><span class="pre">Box(16,)</span></code> — datacenter state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">obs[&quot;scheduler&quot;]</span></code> : <code class="docutils literal notranslate"><span class="pre">Box(12,)</span></code> — scheduler metrics</p></li>
+</ul>
+<p><strong>JointDCFlat-v0</strong> flattens everything for SB3 compatibility:</p>
+<ul class="simple">
+<li><p>Action: <code class="docutils literal notranslate"><span class="pre">Box(4,)</span></code> — 3 cooling + 1 scheduling (continuous)</p></li>
+<li><p>Obs: <code class="docutils literal notranslate"><span class="pre">Box(28,)</span></code> — 16 thermal + 12 scheduler</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For SB3 (needs flat spaces):</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;JointDCFlat-v0&quot;</span><span class="p">,</span> <span class="n">n_racks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="c1"># For custom RL loops (Dict spaces):</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">compopt</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;JointDC-v0&quot;</span><span class="p">,</span> <span class="n">n_racks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-environments">
+<h2>Custom Environments<a class="headerlink" href="#custom-environments" title="Link to this heading">¶</a></h2>
+<p>Register your own environments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">compopt.envs</span><span class="w"> </span><span class="kn">import</span> <span class="n">register</span>
+
+<span class="n">register</span><span class="p">(</span>
+    <span class="s2">&quot;MyCustomDC-v0&quot;</span><span class="p">,</span>
+    <span class="n">entry_point</span><span class="o">=</span><span class="s2">&quot;my_module:MyCustomEnv&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Custom datacenter environment&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="rewards.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Reward System</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="physics.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Physics Engine</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, CompOpt Contributors &amp; Oak Ridge National Laboratory
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/compopt-benchmark/compopt" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Environments</a><ul>
+<li><a class="reference internal" href="#environment-hierarchy">Environment Hierarchy</a></li>
+<li><a class="reference internal" href="#chipthermal-v0-easy">ChipThermal-v0 (Easy)</a><ul>
+<li><a class="reference internal" href="#configurable-parameters">Configurable Parameters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rackcooling-v0-medium">RackCooling-v0 (Medium)</a></li>
+<li><a class="reference internal" href="#scheduling-v0-medium">Scheduling-v0 (Medium)</a></li>
+<li><a class="reference internal" href="#datacenter-v0-hard">DataCenter-v0 (Hard)</a><ul>
+<li><a class="reference internal" href="#observation-vector-16-elements">Observation Vector (16 elements)</a></li>
+<li><a class="reference internal" href="#grid-electricity-mode">Grid Electricity Mode</a><ul>
+<li><a class="reference internal" href="#tariff-presets">Tariff Presets</a></li>
+<li><a class="reference internal" href="#price-model-details">Price Model Details</a></li>
+<li><a class="reference internal" href="#example-inspecting-price-variation">Example: Inspecting price variation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jointdc-v0-jointdcflat-v0-expert">JointDC-v0 / JointDCFlat-v0 (Expert)</a></li>
+<li><a class="reference internal" href="#custom-environments">Custom Environments</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>
