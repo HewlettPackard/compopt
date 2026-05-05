@@ -356,20 +356,6 @@ T_eff = f_evap · T_wetbulb + (1 − f_evap) · T_ambient
 
 ---
 
-## Citation
-
-If you use CompOpt in your research, please cite:
-
-```bibtex
-@inproceedings{compopt2026,
-    title     = {{CompOpt}: An End-to-End AI Data Center Simulation Benchmark
-                 for Reinforcement Learning and Agentic AI},
-    author    = {{CompOpt Contributors} and {Oak Ridge National Laboratory}},
-    booktitle = {NeurIPS 2026 Datasets and Benchmarks Track},
-    year      = {2026},
-}
-```
-
 ---
 
 ## License
